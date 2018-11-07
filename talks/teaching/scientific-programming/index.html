@@ -41,25 +41,46 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
+					<section>
+						<h1>Scientific Programming</h1>
+						<p><small>2018-11-09</a></small></p>
+						<p><small>Peter W. Hildebrand & Johanna K.S. Tiemann</a></small></p>
+					</section>
+					<section>
+						<h2>Motivation</h2>
+						<ul>
+							<li>efficient</li>
+							<li>possible</li>
+							<li>reproducible</li>
+							<li>easy</li>
+						</ul>
+					</section>
+				</section>
+				<section>
 					<h2>Outline</h2>
 					<ol>
-						<li><a href="#/1/1">UNIX</a></li>
-						<li><a href="#/2/1">Usefull Programs</a></li>
-						<li><a href="#/3/1">Computer programming</a></li>
+						<li><a href="#/2">UNIX</a></li>
+						<li><a href="#/3">Text Editors</a></li>
+						<li><a href="#/4">Computer programming</a></li>
+						<li><a href="#/5">Data Visualization</a></li>
 					</ol>
 				</section>
 				<section>
 					<section>
 						<h2>UNIX</h2>
-						<p>What's an Operating System & what's UNIX?</p>
-						<p>What's the kernel, shell, programs?</p>
-						<p>Basic commands</p>
+						<ul>
+							<li>What's an Operating System & what's UNIX?</li>
+							<li>What's the kernel, shell, programs?</li>
+							<li>Basic commands</li>
+						</ul>
 					</section>
 					<section>
 						<h2>What's an Operating System & what's UNIX?</h2>
-						<p>Operating System (OS) = set of programs used to perform basic tasks &  connects between software & hardware</p>
-						<p>Operating System (OS) = e.g. Windows, Mac (OS X), Linux (e.g. Ubuntu)</p>
-						<p>UNIX: not always with graphical interfaces with always with command prompt</p>
+						<ul>
+							<p>Operating System (OS) = set of programs used to perform basic tasks &  connects between software & hardware</p>
+							<p>Operating System (OS) = e.g. Windows, Mac (OS X), Linux (e.g. Ubuntu)</p>
+							<p>UNIX: not always with graphical interfaces with always with command prompt</p>
+						</ul>
 					</section>
 					<section>
 						<h2>What's the kernel, shell, programs?</h2>
@@ -72,7 +93,7 @@
 						<p>echo, ls, cd, mkdir, cat, cp, mv, rm, head, tail, history, diff, sleep, kill, ps</p>
 						<p> ~ .., tab, Ctrl+r, >, var=3, $</p>
 						<p>Here comes an example:</p>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="shell" data-trim contenteditable>
 $ ls /
 bin   etc   lib64       mnt   root  share  tmp
 boot  home  lost+found  opt   run   srv    usr
@@ -82,43 +103,33 @@ dev   lib   media       proc  sbin  sys    var
 				</section>
 				<section>
 					<section>
-						<h2>Usefull Programs</h2>
-						<p>Text Editors & IDE</p>
-						<p>XXX</p>
-					</section>
-					<section>
 						<h2>Text Editors</h2>
-						<p>vim/emacs/vi/...: :q, :q!</p>
-						<p>gedit, Notepadd++, Sublime Text</p>
-						<p>IDE (Integrated development environment:
-							<p>(Microsoft) Visual Studio</p>
-							<p>Eclipse</p>
-							<p>NetBeans</p>
-							<p>Atom</p>
-						</p>
-						<p>HTML editors: Atom, Bluefish, CudaText, WebStorm, SeaMonkey, oXygenXML, Dreamweaver, </p>
-					</section>
-					<section>
-						<h2>XXX</h2>
-						<p>XXX</p>
+						<ul>
+							<li>vim/emacs/vi/...: :q, :q!</li>
+							<li>gedit, Notepadd++, Sublime Text</li>
+							<li>IDE (Integrated development environment:</li>
+							<ul>
+								<li>(Microsoft) Visual Studio</li>
+								<li>Eclipse</li>
+								<li>NetBeans</li>
+								<li>Atom</li>
+							</ul>
+							<li>HTML editors: Atom, Bluefish, CudaText, WebStorm, SeaMonkey, oXygenXML, Dreamweaver, ...</li>
+						</ul>
 					</section>
 				</section>
 				<section>
 					<section>
 						<h2>Computer programming</h2>
-						<ol><ul>Basic usage</ul>
-							<ul>Introduction or what is Python?</ul>
-							<ul>Basic usage</ul>
-							<ul>Data Type & Operators</ul>
-							<ul>Input & Output</ul>
-							<ul>Lists</ul>
-							<ul>Dictionary</ul>
-							<ul>Writing scripts</ul>
-							<ul>is Statements</ul>
-							<ul>Loops</ul>
-							<ul>Function</ul>
-							<ul>Classes</ul>
-							<ul>Modules</ul>
+						<ol>
+							<li>Introduction or what is Python?</li>
+							<li>Basic usage</li>
+							<li>Data Type & Operators</li>
+							<li>Input & Output</li>
+							<li>Lists & Dictionary</li>
+							<li>Writing scripts</li>
+							<li>is Statements & Loops</li>
+							<li>Function, Classes and Modules</li>
 						</ol>
 					</section>
 					<section>
@@ -143,7 +154,7 @@ dev   lib   media       proc  sbin  sys    var
 					</section>
 					<section>
 						<h2>Basic usage</h2>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="python" data-trim contenteditable>
 $ python
 Python 2.7.12 (default, Dec  4 2017, 14:50:18) 
 [GCC 5.4.0 20160609] on linux2
@@ -153,21 +164,21 @@ Type "help", "copyright", "credits" or "license" for more information.
 					</section>
 					<section>
 						<h2>Data Type & Operators</h2>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="python" data-trim contenteditable>
 >>> 3 + 7
 10
 >>> 15 / 3 * 5
 25
 >>> 5.0 / 2.0 # vs 5 / 2
 						</code></pre>
-						<ol>
-							<ul>Math operators: +, -, *, /, **, %, ==, >, <, !=, <= </ul>
-							<ul>Strings: 'Hello', "4+7" * 3, "Mixing 'up' " + "quotes"</ul>
-							<ul>Variables</ul>
-							<ul>Booleans: True, False, 0, 1</ul>
-							<ul>Functions: abs(), int(), float(), str(), len(), type(), print, ...</ul>
-						</ol>
-						<pre><code class="hljs" data-trim contenteditable>
+						<ul>
+							<li>Math operators: +, -, *, /, **, %, ==, >, <, !=, <= </li>
+							<li>Strings: 'Hello', "4+7" * 3, "Mixing 'up' " + "quotes"</li>
+							<li>Variables</li>
+							<li>Booleans: True, False, 0, 1</li>
+							<li>Functions: abs(), int(), float(), str(), len(), type(), print, ...</li>
+						</ul>
+						<pre><code class="python" data-trim contenteditable>
 >>> help(len)
 Help on built-in function len in module __builtin__:
 len(...)
@@ -177,7 +188,7 @@ len(...)
 					</section>
 					<section>
 						<h2>Input & Output</h2>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="python" data-trim contenteditable>
 >>> # display the contents of myvar
 >>> print myvar
 >>> # prompt the user for input with the string prompt
@@ -192,9 +203,9 @@ len(...)
 					</section>
 					<section>
 						<h2>Lists</h2>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="Python" data-trim contenteditable>
 >>> mylist = ['abc', 'def', 'ABC', 'DEF']
->>> print mylist
+>>> print(mylist)
 ['abc', 'def', 'ABC', 'DEF']
 >>> mylist[2]
 'ABC'
@@ -212,7 +223,7 @@ len(...)
 					</section>
 					<section>
 						<h2>Dictionary</h2>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="python" data-trim contenteditable>
 >>> mydict = { 'one' : 1, 'two' : 2,
 ... 'three' : 3,
 ... 'four' : 4,
@@ -227,7 +238,7 @@ len(...)
 
 					<section>
 						<h2>Writing scripts</h2>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="python" data-trim contenteditable>
 #!/usr/bin/python
 
 prompt = 'What is your name? '
@@ -235,7 +246,7 @@ name = raw_input(prompt)
 greeting = "Hello, " + name
 print greeting
 						</code></pre>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="shell" data-trim contenteditable>
 $ python greets.py
 What is your name? Crazy Cat
 Hellow Crazy Cat
@@ -244,7 +255,7 @@ $
 					</section>
 					<section>
 						<h2>is Statements</h2>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="python" data-trim contenteditable>
 if condition:
     # Do this when the
     # condition is True
@@ -258,7 +269,7 @@ else:
 					</section>
 					<section>
 						<h2>Loops</h2>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="python" data-trim contenteditable>
 while condition:
     # Process that is done while the
     # condition is True
@@ -271,14 +282,14 @@ while condition:
 					</section>
 					<section>
 						<h2>Loops</h2>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="python" data-trim contenteditable>
 for item in mylist:
     print item
 						</code></pre>
 					</section>
 					<section>
 						<h2>Function</h2>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="python" data-trim contenteditable>
 f(x, y) = x + y
 f(1, 2) = 3
 
@@ -289,7 +300,7 @@ def function_name():
 					</section>
 					<section>
 						<h2>Function</h2>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="python" data-trim contenteditable>
 #!/usr/bin/env python
 
 def incr(myvar):
@@ -306,7 +317,7 @@ print myvar
 					</section>
 					<section>
 						<h2>Function II</h2>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="python" data-trim contenteditable>
 #!/usr/bin/env python
 
 def fibonacci(n, a=0, b=1):
@@ -341,7 +352,7 @@ for n in range(10):
 						<ol>
 							<ul>define your own data types, e.g. car, str</ul>
 						</ol>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="python" data-trim contenteditable>
 >>> original_string = 'Hello, World!'
 >>> original_string.upper()
 'HELLO, WORLD!'
@@ -355,7 +366,7 @@ for n in range(10):
 					</section>
 					<section>
 						<h2>Modules</h2>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="python" data-trim contenteditable>
 from module import name
 from module import name as new_name
 						</code></pre>
@@ -372,29 +383,23 @@ from module import name as new_name
 				<section>
 					<section>
 						<h2>Data Visualization</h2>
-						<ol>
-							<ul>Plotting</ul>
-							<ul>Statistics</ul>
-							<ul>Reading Molecular Structure files</ul>
-							<ul>Visualizing Molecular Structure files</ul>
-						</ol>
+						<ul>
+							<li>Plotting</li>
+							<li>Reading Molecular Structure files</li>
+							<li>Visualizing Molecular Structure files</li>
+							<li>Visualizing and analyzing MD data</li>
+						</ul>
 					</section>
 					<section>
 						<h2>Plotting</h2>
 						<ol>
 							<ul>gnuplot, R, Python (matplotlib)</ul>
-							<ul>datapoints, histogram, </ul>
-						</ol>
-					</section>
-					<section>
-						<h2>Statistics</h2>
-						<ol>
-							<ul>Mean, std, stdev</ul>
+							<ul>datapoints, histogram, barplot, ...</ul>
 						</ol>
 					</section>
 					<section>
 						<h2>Reading Molecular Structure files</h2>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="text" data-trim contenteditable>
 HEADER    SIGNALING PROTEIN                       05-MAR-18   6CMO              
 TITLE     RHODOPSIN-GI COMPLEX                                                  
 COMPND    MOL_ID: 1;                                                            
@@ -443,42 +448,43 @@ END
 					</section>
 					<section>
 						<h2>Reading Molecular Structure files</h2>
-						<ol>
-							<ul>Title Section</ul>
-							<ul>Header Record</ul>
-							<ul>Compound Record</ul>
-							<ul>Remark Record</ul>
-							<ul>Primary Structure Section</ul>
-							<ul>Secondary Structure Section</ul>
-							<ul>Connectivity Annotation Section</ul>
-							<ul>Crystallographic and Coordinates Section</ul>
-							<ol>
-								<ul>CRYST1 Record</ul>
-								<ul>ORIGXn Record</ul>
-								<ul>SCALEn Record</ul>
-							</ol>
-							<ul>Coordinate Section</ul>
-							<ol>
-								<ul>Model Record</ul>
-								<ul>Atom Record</ul>
-								<ul>TER Record</ul>
-							</ol>
-						</ol>
+						<ul>
+							<li>Title Section</li>
+							<li>Header, Compound, Remark Record</li>
+							<li>Primary & Secondary Structure Section</li>
+							<li>Connectivity Annotation Section</li>
+							<li>Crystallographic and Coordinates Section</li>
+							<ul>
+								<li>CRYST1 Record</li>
+								<li>ORIGXn Record</li>
+								<li>SCALEn Record</li>
+							</ul>
+							<li>Coordinate Section</li>
+							<ul>
+								<li>Model Record</li>
+								<li>Atom Record</li>
+								<li>TER Record</li>
+							</ul>
+						</ul>
 					</section>
 					<section>
 						<h2>Reading Molecular Structure files</h2>
-						<ol>
-							<ul>Get the Sequence</ul>
-							<ul>Get Bonds, Angles, Dihedrals, Center of Mass, Radius of Gyration, RMSD, RMSF</ul>
-						</ol>
+						<p>Sequence, Bonds, Angles, Dihedrals, Center of Mass, Radius of Gyration, RMSD, RMSF, ...</p>
 					</section>
 					<section>
-						<h2>Visualizing Molecular Structure files</h2>
-						<ol>
-							<ul>wwPDB/Web-viewer</ul>
-							<ul>PyMOL</ul>
-							<ul>VMD</ul>
-						</ol>
+						<h2>Visualizing Molecular Structure files and more</h2>
+						<ul>
+							<li>wwPDB/Web-viewer</li>
+							<li>PyMOL</li>
+							<li>VMD</li>
+							<li>Chimera</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Visualizing and analyzing MD data</h2>
+						<p>MDsrv/nglview</p>
+						<p>VMD</p>
+						<p>MDtraj, pytraj, mdanalysis, biopython, pyrosetta</p>
 					</section>
 				</section>
 
@@ -486,344 +492,9 @@ END
 
 
 <!-- #################################################################################### -->
-				<section>
-					<h1>Reveal.js</h1>
-					<h3>The HTML Presentation Framework</h3>
-					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> and <a href="https://github.com/hakimel/reveal.js/graphs/contributors">contributors</a></small>
-					</p>
-				</section>
-
-				<section>
-					<h2>Hello There</h2>
-					<p>
-						reveal.js enables you to create beautiful interactive slide decks using HTML. This presentation will show you examples of what it can do.
-					</p>
-				</section>
-
-				<!-- Example of nested vertical slides -->
-				<section>
-					<section>
-						<h2>Vertical Slides</h2>
-						<p>Slides can be nested inside of each other.</p>
-						<p>Use the <em>Space</em> key to navigate through all slides.</p>
-						<br>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 1</h2>
-						<p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
-					</section>
-					<section>
-						<h2>Basement Level 2</h2>
-						<p>That's it, time to go back up.</p>
-						<br>
-						<a href="#/2">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="transform: rotate(180deg); -webkit-transform: rotate(180deg);">
-						</a>
-					</section>
-				</section>
-
-				<section>
-					<h2>Slides</h2>
-					<p>
-						Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it out at <a href="https://slides.com" target="_blank">https://slides.com</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Point of View</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview.
-					</p>
-					<p>
-						Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-					</p>
-				</section>
-
-				<section>
-					<h2>Touch Optimized</h2>
-					<p>
-						Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through your slides.
-					</p>
-				</section>
-
-				<section data-markdown>
-					<script type="text/template">
-						## Markdown support
-
-						Write content using inline or external Markdown.
-						Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-
-						```
-						<section data-markdown>
-						  ## Markdown support
-
-						  Write content using inline or external Markdown.
-						  Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-						</section>
-						```
-					</script>
-				</section>
-
-				<section>
-					<section id="fragments">
-						<h2>Fragments</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
-
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
-					</section>
-					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's different types of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p>
-							<span style="display: inline-block;" class="fragment fade-right">fade-right, </span>
-							<span style="display: inline-block;" class="fragment fade-up">up, </span>
-							<span style="display: inline-block;" class="fragment fade-down">down, </span>
-							<span style="display: inline-block;" class="fragment fade-left">left</span>
-						</p>
-						<p class="fragment fade-in-then-out">fade-in-then-out</p>
-						<p class="fragment fade-in-then-semi-out">fade-in-then-semi-out</p>
-						<p>Highlight <span class="fragment highlight-red">red</span> <span class="fragment highlight-blue">blue</span> <span class="fragment highlight-green">green</span></p>
-					</section>
-				</section>
-
-				<section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
-						<a href="?transition=slide#/transitions">Slide</a> -
-						<a href="?transition=convex#/transitions">Convex</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a>
-					</p>
-				</section>
-
-				<section id="themes">
-					<h2>Themes</h2>
-					<p>
-						reveal.js comes with a few themes built in: <br>
-						<!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/black.css'); return false;">Black (default)</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/white.css'); return false;">White</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/league.css'); return false;">League</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/sky.css'); return false;">Sky</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/beige.css'); return false;">Beige</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/simple.css'); return false;">Simple</a> <br>
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/serif.css'); return false;">Serif</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/blood.css'); return false;">Blood</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/night.css'); return false;">Night</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/moon.css'); return false;">Moon</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/solarized.css'); return false;">Solarized</a>
-					</p>
-				</section>
-
-				<section>
-					<section data-background="#dddddd">
-						<h2>Slide Backgrounds</h2>
-						<p>
-							Set <code>data-background="#dddddd"</code> on a slide to change the background color. All CSS color formats are supported.
-						</p>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
-						<h2>Image Backgrounds</h2>
-						<pre><code class="hljs">&lt;section data-background="image.png"&gt;</code></pre>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" data-background-repeat="repeat" data-background-size="100px">
-						<h2>Tiled Backgrounds</h2>
-						<pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-					</section>
-					<section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
-						<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
-							<h2>Video Backgrounds</h2>
-							<pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
-						</div>
-					</section>
-					<section data-background="http://i.giphy.com/90F8aUepslB84.gif">
-						<h2>... and GIFs!</h2>
-					</section>
-				</section>
-
-				<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
-					<h2>Background Transitions</h2>
-					<p>
-						Different background transitions are available via the backgroundTransition option. This one's called "zoom".
-					</p>
-					<pre><code class="hljs">Reveal.configure({ backgroundTransition: 'zoom' })</code></pre>
-				</section>
-
-				<section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
-					<h2>Background Transitions</h2>
-					<p>
-						You can override background transitions per-slide.
-					</p>
-					<pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background-transition="zoom"&gt;</code></pre>
-				</section>
-
-				<section>
-					<h2>Pretty Code</h2>
-					<pre><code class="hljs" data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) {
-        node.className += ' roll';
-      }
-    }
-  }
-}
-					</code></pre>
-					<p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-				</section>
-
-				<section>
-					<h2>Marvelous List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
-				</section>
-
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
-
-				<section>
-					<h2>Tabular Tables</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>Item</th>
-								<th>Value</th>
-								<th>Quantity</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Apples</td>
-								<td>$1</td>
-								<td>7</td>
-							</tr>
-							<tr>
-								<td>Lemonade</td>
-								<td>$2</td>
-								<td>18</td>
-							</tr>
-							<tr>
-								<td>Bread</td>
-								<td>$3</td>
-								<td>2</td>
-							</tr>
-						</tbody>
-					</table>
-				</section>
-
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">The nice thing about standards is that there are so many to choose from</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-					</blockquote>
-				</section>
-
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Speaker View</h2>
-					<p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
-					<p>Press the <em>S</em> key to try it out.</p>
-
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
-				</section>
-
-				<section>
-					<h2>Export to PDF</h2>
-					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
-					<iframe data-src="https://www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-				</section>
-
-				<section>
-					<h2>Global State</h2>
-					<p>
-						Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-						will be added as a class to the document element when the slide is open. This lets you
-						apply broader style changes, like switching the page background.
-					</p>
-				</section>
-
-				<section data-state="customevent">
-					<h2>State Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-				</section>
-
-				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting slides off the screen.
-					</p>
-				</section>
-
-				<section>
-					<h2>Much more</h2>
-					<ul>
-						<li>Right-to-left support</li>
-						<li><a href="https://github.com/hakimel/reveal.js#api">Extensive JavaScript API</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#auto-sliding">Auto-progression</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#parallax-background">Parallax backgrounds</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#keyboard-bindings">Custom keyboard bindings</a></li>
-					</ul>
-				</section>
 
 				<section style="text-align: left;">
-					<h1>THE END</h1>
-					<p>
-						- <a href="https://slides.com">Try the online editor</a> <br>
-						- <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
-					</p>
+					<h1>THE END?</h1>
 				</section>
 
 			</div>
