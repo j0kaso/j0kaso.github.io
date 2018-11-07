@@ -3,9 +3,7 @@ channels:
     - defaults
 dependencies:
     - matplotlib
-    - mdtraj
-    - numpy
-    - scipy
+    - mdanalysis
     - nglview
     
 
