@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Sharing-MDsrv</title>
+
+        <meta name="description" content="">
+        <meta name="author" content="Johanna K S Tiemann">
+
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/white.css" id="theme">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <style>
+        .reveal .slides > section {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        .inactive {
+            color: #999;
+        }
+        .warning {
+            color: #eea236;
+        }
+        .success {
+            color: #4cae4c;
+        }
+        .top {
+            top: 100px !important;
+        }
+        .bottom {
+            top: unset !important;
+            bottom: 100px !important;
+        }
+        .reveal .speaker-notes {
+            width: 50%;
+            left: 25%;
+        }
+
+        .x {
+            position:relative;
+        }
+
+        .x:before, .x:after{
+            content:'';
+            position:absolute;
+            width:100%;
+            height:10px;
+            background-color:tomato;
+            top:140px;
+        }
+
+        .x:before {
+            -webkit-transform:rotate(45deg);
+            -moz-transform:rotate(45deg);
+            transform:rotate(45deg);
+            left:2px;
+        }
+        .x:after {
+            -webkit-transform:rotate(-45deg);
+            -moz-transform:rotate(-45deg);
+            transform:rotate(-45deg);
+            right:2px;
+        }
+    </style>
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <small id="busy" style="display:none; position:absolute; top:0px; right:0px;">Loading...</small>
+
+                <div id="viewport" style="width:960px; height:700px;"></div>
+<!-- <img style="z-index:99; width:20%; position:absolute; right:0px; bottom:0px;" src="img/L-logo.jpg" /> -->
+
+
+
+<!-- INTRO -->
+                <section data-state="slide-loading">
+                    <h2 id="status">Loading...</h2>
+                </section>
+                <section data-state="slide-title">
+                    <div>Session II: Tools for Trajectory File Sharing</div>
+                    <h2 style="text-transform: none">Visual MD sharing using <br>NGL & MDsrv</h2>
+                    <br>
+                    <p><small>2018-11-26</small></p>
+                    <p><small>Johanna Tiemann<br>AG Hildebrand &minus; University Leipzig</small></p>
+                    <img class="plain" style="width:20%;" src="img/L-logo.jpg" />
+                </section>
+                <section  style="z-index:100">
+                    <section data-state="slide-billion">
+                        <h3>SHARING - why should I care?</h3>
+                        <p class="fragment">Goal of science: explain, predict & apply</p>
+                        <p class="fragment">scientist interpret, exchange, discuss, reuse & get credit</p>
+                        <p class="fragment"><strong>scientists want to share & exchange</strong></p>
+                        <aside class="notes">
+                            Talking about sharing - why should I care? Easy as it is, it lies within the very goal of science: The main goal of science is to not only to describe but explain the phenomena in our Universe, their mechanisms & laws that regulate it. Besides explaining those phenomena, science aims to predict events based on natural laws. And finally, the knowledge obtained by science can be applied to develop new technologies & applications.
+                            This global goal can not be reached by just a single person, therefore it lies in the very nature of scientist to exchange and discuss about their observations and interpretations. By sharing their knowledge, it gets reused to gain further knowledge and thereby gives credit to the scientists themselves.
+
+                            gaining knowledge = sharing knowledge
+                            scientist <strong>want</strong> : conferences, journals, social media ...
+                        </aside>
+<!--                            <li>professional data publishers offering their services; </li>
+                            <li>software and tool-builders providing data analysis and processing services such as reusable workflows; </li>
+                            <li>funding agencies (private and public) increasingly concerned with long-term data stewardship: and a data science community mining, integrating and analysing new and existing data to advance discovery.</li>
+                          <li>improve reviewing & publication standards</li>
+                            <li class="fragment">bridge between science & publicity / bringing science closer to publicity</li>-->
+                        <img class="plain" style="width:50%" src="img/collaboration.jpg" />
+                        <p><font size="2">www.wikicsr.it</font></p>
+                    </section>
+                    <section  style="z-index:100">
+                        <h3>What's the current standard?</h3>
+                        <p class="fragment">Problem of MD: data-intensive science</p>
+                        <table >
+                                <th class="fragment" >
+                                    <p align="center">Text</p>
+                                    <p align="center">&#8659;</p>
+                                    <div style="width: 250px;"><img class="plain" src="img/pubmed.png" /></div>
+                                </th>
+                                <th class="fragment" >
+                                    <p align="center">Figures</p>
+                                    <p align="center">&#8659;</p>
+                                    <div style="width: 250px;"><img class="plain"src="img/ncomms14505-f10.jpg" /></div>
+                                </th>
+                                <th class="fragment" >
+                                    <p align="center">Video</p>
+                                    <p align="center">&#8659;</p>
+                                    <div align="center" style="width: 250px; height: 230px"><video data-autoplay src="./data/ncomms14505-s3.mp4"></video></div>
+                                </th>
+                        </table>
+                        <p class="fragment" style="z-index:100; position: relative">Journals, Conferences, Social Media</p>
+                        <p class="fragment"><small>recently: distribution of "raw data"</small></p>
+                        <aside class="notes">
+                            Problem: Data intensive science
+                            limitations!
+                            so what are we sharing?
+                            And how do we share it?
+                            rarely: distribution of "raw data"
+                        </aside>
+                    </section>
+                    <section>
+                        <h3>What's out there?</h3>
+                        <p class="fragment" align="left"><strong>Scientific data sharing resources:</strong></p>
+                        <ul>
+                            <li class="fragment">e.g. OSF, FigShare, Zenodo, Dataverse, Dryad, Mendeley Data, DataHube</li>
+                            <li class="fragment">open, free, easy usable</li>
+                            <li class="fragment">few restrictions, no requirements</li>
+                            <li class="fragment">Problem: no attempt to integrate / harmonize data</li>
+                        </ul>
+                        <p class="fragment">&rarr; more about this later</p>
+                        <p class="fragment" align="left"><strong>Visualization resources:</strong></p>
+                        <ul>
+                            <li class="fragment">VMD streamlining</li>
+                            <li class="fragment"><strong>MDsrv</strong>, HTMoL</li>
+                        </ul>
+                        <aside class="notes">
+                           accepting a wide range of data types in a wide variety of formats (not attempt to integrate or harmonize the deposited dataM few restrictions (or requirements 
+                        </aside>
+                    </section>
+                </section>
+                <section>
+                    <section data-state="slide-title">
+                        <h3 style="position: absolute; top: 0px">Why focus on visualization?</h3>
+                        <p style="position: absolute; bottom:-650px">One Look is Worth A Thousand Words!</p>
+                        <aside class="notes">
+                            intuitive understanding
+                        </aside>
+                    </section>
+
+                    <section data-state="slide-billion">
+                        <h3>Problems of sharing visualization</h3>
+                        <ul>
+                            <li class="fragment">large file size & different formats</li>
+                            <li class="fragment">specialized software & setups</li>
+                        </ul>
+                        <p class="fragment">&rarr; limits audience</p>
+                        <br>
+                        <p class="fragment">WebGL: standard built directly into web browser without requiring installation of plugins</p>
+                        <p class="fragment"><strong>MDsrv</strong>, HTMoL</p>
+                        <aside class="notes">
+                            MD = data-intensive sciences
+                            hindered by large file size
+                            recent software developments 
+                        </aside>
+                    </section>
+
+
+
+                    <section>
+                        <h3 style="text-transform: none">MDsrv</h3>
+                        <img style="width: 50%;" class="plain" src="img/MDsrv.png" />
+                        <aside class="notes">
+                            <ul>
+                                <li>interactive & remote exploration of trajectories</li>
+                                <li>client-server architecture</li>
+                                <li>utilizes GPU accelerated 3D graphics</li>
+                                <li>Supports structures, topologies & trajectories from common MD packages including Amber, gromacs, NAMD, Tinker, Desmond by utilizing MDAnalysis & MDTraj</li>
+                                <li>display of unprocessed data:</li>
+                                  <li>scripting</li>
+                                <li>embedding or GUI (allowing creation of complex molecular scenes)</li>
+                                <li>trajectory controls:</li>
+                                <li>export high-resolution images & download PDB-formatted files</li>
+                                <li>facilitate interactive exploration, collaborative analysis & promote discussion</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section data-transition="none">
+                        <h3>Implementation</h3>
+                        <img style="width: 50%;" class="plain" src="img/implementation.png" />
+                        <p class="fragment" align="left"><strong>(A) Server component:</strong></p>
+                        <p class="fragment" >WSGI compliant web server (utilizing Python & Flask) handles static server, trajectory files and ensures basic access control</p>
+                        <aside class="notes">
+                            <li>Serve static JavaScript, HTML, CSS, GLSL, font...</li>
+                            <li>Provide data files (traj, struc, script)</li>
+                            <li>Handle requests for trajectory frames</li>
+                            <li>Ensure basic access control to server, specific data directories or none</li>
+                            <li>two modes of operation</li>
+                            <ul>
+                                <li>easy-to-use command-line tool for local service</li>
+                                <li>deploy on server to provide a dedicated streaming service</li>
+                            </ul>
+                        </aside>
+                    </section>
+                    <section data-transition="none">
+                        <h3>Implementation</h3>
+                        <img style="width: 50%;" class="plain" src="img/implementation.png" />
+                        <p align="left"><strong>(B) Trajectory serving:</strong></p>
+                        <p class="fragment">Provides access to vast amounts of trajectory formats by using function derived from SimpleTraj, MDTraj & MDAnalysis</p>
+                        <aside class="notes">
+                            <li>Supports structures, topologies & trajectories from common MD packages including Amber, gromacs, NAMD, Tinker, Desmond by utilizing MDAnalysis & MDTraj</li>
+                        </aside>
+                    </section>
+                    <section data-transition="none">
+                        <h3>Implementation</h3>
+                        <img style="width: 50%;" class="plain" src="img/implementation.png" />
+                        <p align="left"><strong>(C) Visualization via NGL:</strong></p>
+                        <p class="fragment">JavaScript written, GUI / embedded viewer reads, processes & updates structures & representations and renders on GPU using WebGL.</p>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>Reading, processing and updating of molecular structures</li>
+                                <li>Transforming molecular structures into display representations</li>
+                                <li>Rendering of display representations on the GPU using WebGL</li>
+                                <li>Creating an interactive user interface, GUI, scripting support</li>
+                                <li>display of unprocessed data:</li>
+                            <ul>
+                                <li>on-the fly superposition to reference structure or first frame of trajectory</li>
+                                <li>handling periodic boundary conditions</li>
+                                <li>secondary structure assignment</li>
+                                <li>--> only applyed to displayed frames</li>
+                            </ul>
+                            <li>NGL:</li>
+                            <ul>
+                                <li>molecular representations: spacefill, ball, stick, cartoon, molecular surface</li>
+                                <li>fine tuning by various parameters, e.f. change the rendering quality, color or size</li>
+                            </ul>
+                            <li>scripting</li>
+                            <li>embedding or GUI (allowing creation of complex molecular scenes)</li>
+                            <li>trajectory controls:</li>
+                            <ul>
+                                <li>play, pause, speed, frame increment, display of simulation time</li>
+                                <li>spline</li>
+                            </ul>
+                            <li>export high-resolution images & download PDB-formatted files</li>
+                            </ul>
+                        </aside>
+                    </section>
+                    <section>
+                        <h3>Some examples</h3>
+                        <ul>
+                            <li><a href="http://proteinformatics.charite.de/html/embedded_example_1.html">Published simulation embedded next to the reference</a></li>
+                            <li><a href="http://proteinformatics.charite.de/html/embedded_example_2.html">Simulation within a wiki-like article</a></li>
+                                <li><a href="http://proteinformatics.charite.de/html/mdsrvdev.html?load=file://MDsrv/script6.ngl">GUI Coarse-Grained simulation</a></li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h3>Limitations & how to overcome them</h3>
+                        <p>MDsrv reaches towards each single researcher</p>
+                        <p>What simulations should be uploaded?</p>
+                        <aside class="notes">
+                            <p>If it is ok with you, through this practical example, you may present few limitations you may have encountered and maybe some solutions you found to overcome these limitations (if you find some). The idea is to give a practical case to serve as an introduction for the main discussion part during the session:  "Tools for trajectory file sharing".</p>
+                        </aside>
+                        <p>see the bigger picture</p>
+                    </section>
+                    <section>
+                        <h3>Problems by current sharing culture</h3>
+                        <ul>
+                            <li>moving away from centralization</li>
+                            <li>becoming more diverse</li>
+                            <li>less integrated</li>
+                            <li>problematic for re-usability</li>
+                        </ul>
+                        <br>
+                        <br>
+                        <p class="fragment" ><strong>FAIR principles</strong></p>
+                        <p class="fragment" >&rarr; GPCRmd</p>
+                        <br>
+                        <br>
+                        <p style="position: absolute; bottom: 0px;"><font size="2" ><a href="http://dx.doi.org/10.1038/sdata.2016.18">Wilkinson, et al. (2016). The FAIR Guiding Principles for scientific data management and stewardship. Scientific Data, 3, 160018.</a> </font></p>
+                        <aside class="notes">
+                            <ul>
+                                <li>Findable</li>
+                                <li>Accessible</li>
+                                <li>Interoperable</li>
+                                <li>Reproducible</li>
+                            </ul>
+                        </aside>
+                    </section>
+                    <section>
+    <!--                    <blockquote>
+                            &ldquo;If you have knowledge, let others light their candles in it.&rdquo;
+                            <small>Margaret Fuller (1810 - 1850, Journalist, Critic and Women’s Rights Activist)</small>
+                        </blockquote>
+                        <blockquote>
+                            &ldquo;Knowledge alone is not power. The sharing of our knowledge, is when knowledge becomes powerful.&rdquo;
+                            <small>Rich Simmonds (Change Maker & Social Influencer)</small>
+                        </blockquote> -->
+                        <blockquote>
+                            &ldquo;All knowledge is connected to all other knowledge. The fun is in making the connections.&rdquo;
+                            <small>Arthur C. Aufderheide (1922 - 2013, paleopathologist)</small>
+                        </blockquote>
+                        <br>
+                        <h3>Thank you!</h3>
+                        <br>
+                        <small><p>Peter Hildebrand (University Leipzig & Charité Berlin)</p>
+                        <p>Ramon Guixà-Gonzáles (Charité Berlin & Universitat Autònoma de Barcelona)</p>
+                        <p>Alex Rose (UC San Diego)</p></small>
+                    </section>
+                </section>
+<!-- #################################################################################### -->
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+        <script src="js/ngl.js"></script>
+        <script>
+
+var stage;
+document.addEventListener( "DOMContentLoaded", function(){
+    Reveal.initialize({
+        controls: false,
+        showNotes: false,
+        width: 960,
+        height: 700,
+        // width: 1280,
+        // height: 933,
+        dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true },
+                    { src: 'plugin/notes/notes.js', async: true },
+                 ]
+    });
+
+    var notesFlag = true;
+    function toggleNotes(){
+        var elmList = document.querySelectorAll( ".reveal .speaker-notes.visible:not(:empty)" );
+        for( var i = 0, il = elmList.length; i < il; ++i ){
+            elmList[ i ].style.display = notesFlag ? "none" : "block";
+        }
+        notesFlag = !notesFlag;
+    }
+    toggleNotes();
+    window.addEventListener( "keyup", function( e ){
+        if( e.which === 83 ){
+            toggleNotes( notesFlag );
+        }
+    }, false );
+
+
+    stage = new NGL.Stage( "viewport", {
+        backgroundColor: "white",
+        sampleLevel: -1
+    } );
+    function handleResize(){
+        stage.handleResize();
+    }
+    window.addEventListener( "resize", handleResize, false );
+
+    stage.tasks.signals.countChanged.add( function( delta, count ){
+        document.getElementById( "busy" ).style.display = count > 0 ? "block" : "none";
+        document.getElementById( "status" ).innerHTML = count > 0 ? "Loading..." : "Ready!";
+    } );
+
+
+    var _A2A_C;
+    var trajComp;
+    var player;
+    stage.loadFile( "./data/entrance_wrapped.gro", {asTrajectory: true} ).then( function( comp ){
+        _A2A_C = comp;
+        comp.addRepresentation( "tube", { sele: "", opacity: 1, side: "front" } );
+        comp.addRepresentation( "hyperball", { visible: true, sele: "CHL1 and 59 and not hydrogen", colorValue: "#ff3900", colorScheme: "element", opacity: 0.9 } );
+        stage.setOrientation([[-0.08918625838576302,1.9883218034604453,4.486656641720855],[126.77370242780779,1.4149585652999876,22.87269897008708],[-0.14316526306884436,-0.09882771206771168,0.9847521468765403]])
+        trajComp = comp.addTrajectory();
+        player = new NGL.TrajectoryPlayer( trajComp.trajectory );
+        player.play();
+
+    } );
+    function centerGroup( group, center ){
+        group.children.forEach( function( child ){
+            child.position.copy( center );
+        } );
+    }
+    function centerBuffer( buffer, center ){
+        centerGroup( buffer.group, center );
+        centerGroup( buffer.wireframeGroup, center );
+        centerGroup( buffer.pickingGroup, center );
+    }
+    function centerRepr( reprComp, center ){
+        reprComp.repr.bufferList.forEach( function( buffer ){
+            centerBuffer( buffer, center );
+        } );
+    }
+    function hideAll(){
+        stage.eachComponent( function( comp ){
+            comp.setVisibility( false );
+        } );
+    }
+
+    Reveal.addEventListener( "slide-title", function(){
+        hideAll();
+        _A2A_C.setVisibility( true );
+      //  _A2A_C.centerView();
+     //   _pep.setVisibility( true );
+     //   _pep.centerView();
+    }, false );
+
+    Reveal.addEventListener( "slide-billion", function(){
+        stage.setSpin( null );
+        stage.setParameters( { clipNear: 0 } );
+        hideAll();
+    }, false );
+
+    Reveal.addEventListener( "slide-status", function(){
+        stage.setSpin( null );
+        stage.setParameters( { clipNear: 0 } );
+        hideAll();
+    }, false );
+
+
+    Reveal.addEventListener( "slide-scale", function(){
+        stage.setSpin( null );
+        stage.setParameters( { clipNear: 0 } );
+        hideAll();
+    }, false );
+
+    var viewer = stage.viewer;
+    var controls = viewer.controls;
+    var camera = viewer.camera;
+
+    var target = new NGL.Vector3();
+    var target0 = new NGL.Vector3();
+    var targetN = new NGL.Vector3();
+
+
+    Reveal.addEventListener( "slide-scale2", function(){
+        _3J3Qsurface.setVisibility( true );
+        _1M4Xsurface.setVisibility( true );
+        _5J7Vsurface.setVisibility( true );
+        _3J3Qsurface.setParameters( { side: "double" } );
+        _1M4Xsurface.setParameters( { side: "double" } );
+        _5J7Vsurface.setParameters( { side: "double" } );
+        _3J3Q.setVisibility( true );
+        _1M4X.setVisibility( true );
+        _5J7V.setVisibility( true );
+
+        var t0 = performance.now();
+        function animate(){
+            var delta = performance.now() - t0;
+            var alpha = Math.min( 1.0, delta / 5000 );
+            stage.setParameters( { clipNear: 50 * alpha } );
+            viewer.requestRender();
+            if( alpha < 1.0 ){
+                requestAnimationFrame( animate );
+            }else{
+                stage.setSpin( null );
+            }
+        }
+        animate();
+
+    }, false );
+
+    Reveal.addEventListener( "slide-ngl", function(){
+        stage.setSpin( null );
+        stage.setParameters( { clipNear: 0 } );
+        hideAll();
+    }, false );
+
+} );
+        </script>
+
+    </body>
+</html>
