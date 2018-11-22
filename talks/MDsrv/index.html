@@ -91,116 +91,179 @@
 
 
 <!-- INTRO -->
+
                 <section data-state="slide-loading">
                     <h2 id="status">Loading...</h2>
                 </section>
+
                 <section data-state="slide-title">
                     <div>Session II: Tools for Trajectory File Sharing</div>
-                    <h2 style="text-transform: none">Visual MD sharing using <br>NGL & MDsrv</h2>
+                    <h2 style="text-transform: none">Viewing and sharing molecular dynamics simulations on the web</h2>
                     <br>
                     <p><small>2018-11-26</small></p>
                     <p><small>Johanna Tiemann<br>AG Hildebrand &minus; University Leipzig</small></p>
                     <img class="plain" style="width:20%;" src="img/L-logo.jpg" />
+                    <aside class="notes">
+                            Many thanks for your kind introduction Daniel and many thanks to the organizers for inviting me to this great workshop. I feel very honored to speak to introduce to you the session tools for trjaectory file sharing with my favorit example, the MDsrv.
+                        </aside>
                 </section>
                 <section  style="z-index:100">
                     <section data-state="slide-billion">
                         <h3>SHARING - why should I care?</h3>
-                        <p class="fragment">Goal of science: explain, predict & apply</p>
-                        <p class="fragment">scientist interpret, exchange, discuss, reuse & get credit</p>
+                        <br>
+<!--                         <p class="fragment">Goal of science: explain, predict & apply</p>
                         <p class="fragment"><strong>scientists want to share & exchange</strong></p>
-                        <aside class="notes">
-                            Talking about sharing - why should I care? Easy as it is, it lies within the very goal of science: The main goal of science is to not only to describe but explain the phenomena in our Universe, their mechanisms & laws that regulate it. Besides explaining those phenomena, science aims to predict events based on natural laws. And finally, the knowledge obtained by science can be applied to develop new technologies & applications.
-                            This global goal can not be reached by just a single person, therefore it lies in the very nature of scientist to exchange and discuss about their observations and interpretations. By sharing their knowledge, it gets reused to gain further knowledge and thereby gives credit to the scientists themselves.
-
-                            gaining knowledge = sharing knowledge
-                            scientist <strong>want</strong> : conferences, journals, social media ...
-                        </aside>
+ -->                        <br>
 <!--                            <li>professional data publishers offering their services; </li>
                             <li>software and tool-builders providing data analysis and processing services such as reusable workflows; </li>
                             <li>funding agencies (private and public) increasingly concerned with long-term data stewardship: and a data science community mining, integrating and analysing new and existing data to advance discovery.</li>
                           <li>improve reviewing & publication standards</li>
                             <li class="fragment">bridge between science & publicity / bringing science closer to publicity</li>-->
-                        <img class="plain" style="width:50%" src="img/collaboration.jpg" />
-                        <p><font size="2">www.wikicsr.it</font></p>
+                        <figure role="group">
+                            <img class="plain" style="width:50%" src="img/collaboration.jpg" />
+                            <figcaption><font size="2">www.wikicsr.it</font></figcaption>
+                        </figure>
+                        <aside class="notes">
+                            Obviously, I do not have to motivate to you why sharing is important and necessary, because you care as your came here to this meeting. You/We know, that we can not achive knowledge by just ourself, scientists have to 
+
+                            Talking about sharing - why should I care? Easy as it is, it lies within the very goal of science: The main goal of science is to not only to describe but explain the phenomena in our Universe, their mechanisms & laws that regulate it. Besides explaining those phenomena, science aims to predict events based on natural laws. And finally, the knowledge obtained by science can be applied to develop new technologies & applications.
+                            This global goal can not be reached by just a single person, therefore it lies in the very nature of scientist to exchange and discuss their observations and interpretations. By sharing their knowledge, it gets reused to gain further knowledge and thereby gives credit to the scientists themselves.
+                            Obviously, scientists in general want to share and exchange. So what's the problem?
+                        </aside>
                     </section>
-                    <section  style="z-index:100">
+<!--                    <section>
+                        <h3>What's the problem?</h3>
+                        <p class="fragment">MD = data-intensive science</p>
+                        <aside class="notes">
+                            Molecular Dynamics belongs to the data-intensive sciences by generating huge amounts of complex data in even different formats. This makes it obviously difficult to share. So what's the current standard in MD sharing?
+                        </aside>
+                    </section>
+                -->
+                    <section>
                         <h3>What's the current standard?</h3>
-                        <p class="fragment">Problem of MD: data-intensive science</p>
                         <table >
                                 <th class="fragment" >
-                                    <p align="center">Text</p>
+                                    <p align="center">Text/Tables</p>
                                     <p align="center">&#8659;</p>
-                                    <div style="width: 250px;"><img class="plain" src="img/pubmed.png" /></div>
+                                    <div style="width: 300px;"><img class="plain" src="img/pubmed2.png" /></div>
                                 </th>
                                 <th class="fragment" >
                                     <p align="center">Figures</p>
                                     <p align="center">&#8659;</p>
-                                    <div style="width: 250px;"><img class="plain"src="img/ncomms14505-f10.jpg" /></div>
+                                    <div style="width: 300px;"><img class="plain"src="img/ncomms14505-f10.jpg" /></div>
                                 </th>
                                 <th class="fragment" >
                                     <p align="center">Video</p>
                                     <p align="center">&#8659;</p>
-                                    <div align="center" style="width: 250px; height: 230px"><video data-autoplay src="./data/ncomms14505-s3.mp4"></video></div>
+                                    <div align="center" style="width: 300px; height: 300px"><video data-autoplay loop="2" src="./data/ncomms14505-s3.mp4"></video></div>
                                 </th>
                         </table>
-                        <p class="fragment" style="z-index:100; position: relative">Journals, Conferences, Social Media</p>
-                        <p class="fragment"><small>recently: distribution of "raw data"</small></p>
+<!--                         <p class="fragment"><small>recently: distribution of "raw data"</small></p>
+ -->                        <p style="position: absolute; bottom: 0px; right: 0px; left: 0px;"><font size="2" ><a href="http://dx.doi.org/10.1038/ncomms14505">Guixà-González, et al. (2017). Membrane cholesterol access into a G-protein-coupled receptor. Nat Commun., 8, 14505.</a> </font></p>
                         <aside class="notes">
-                            Problem: Data intensive science
-                            limitations!
-                            so what are we sharing?
-                            And how do we share it?
-                            rarely: distribution of "raw data"
+                            MD studies are mainly shared via publications in Journals, presented on Conferences or spread through Social Media.
+                            Depending where they are presented, trajectory output is converted into texts or tables, figures and at the best videos. Just recently and still rarely, raw trajectory files are also distributed directly via scientific data sharing resources.
+                            These three examples give already a glimpse on the powerful role of visualization of biological processes. 
+
+                        --> limits audience
                         </aside>
                     </section>
-                    <section>
-                        <h3>What's out there?</h3>
-                        <p class="fragment" align="left"><strong>Scientific data sharing resources:</strong></p>
-                        <ul>
-                            <li class="fragment">e.g. OSF, FigShare, Zenodo, Dataverse, Dryad, Mendeley Data, DataHube</li>
-                            <li class="fragment">open, free, easy usable</li>
-                            <li class="fragment">few restrictions, no requirements</li>
-                            <li class="fragment">Problem: no attempt to integrate / harmonize data</li>
-                        </ul>
-                        <p class="fragment">&rarr; more about this later</p>
-                        <p class="fragment" align="left"><strong>Visualization resources:</strong></p>
-                        <ul>
-                            <li class="fragment">VMD streamlining</li>
-                            <li class="fragment"><strong>MDsrv</strong>, HTMoL</li>
-                        </ul>
+<!--                     <section data-transition="none">
+                        <h3 style="position: absolute; top: 0px; left: 0px; right: 0px;">Biology is not static!</h3>
+                        <br>
+                        <div>
+                            <img class="plain" style="width:40%" src="img/sim2.png" />
+                            <!-- <img class="plain" style="width:40%" src="img/ncomms14505-f10.jpg" /> -->
+<!--                            <br>
+                            <p>A <strong>picture</strong> is worth a thousand words!</p>
+                        </div>
+
                         <aside class="notes">
-                           accepting a wide range of data types in a wide variety of formats (not attempt to integrate or harmonize the deposited dataM few restrictions (or requirements 
+                            But just until recently, biological processes have been only seen as static pictures or structures. But actually, the dynamics is key to understand the complex function of them.
+                        </aside>
+                    </section>
+                    <section data-transition="none">
+                        <h3 style="position: absolute; top: 0px; left: 0px; right: 0px;">Biology is not static!</h3>
+                        <br>
+                        <div align="center"><video data-autoplay loop="2" src="./data/ncomms14505-s3.mp4"></video></div>
+                        <p style="position: absolute; bottom:-151px; left: 0px; right: 0px;">A <strong>movie</strong> is worth a million words! </p>
+                        <aside class="notes">
+                            Visualization plays here a key role, as it gives intuitive and instant understanding of what is actually happening. This is especially true for dynamics!
+                            So why are we not satisfied with just a video? 
+                        </aside>
+                    </section>
+ -->                    <section data-state="slide-title" data-transition="none">
+                        <h3 style="position: absolute; top: 0px; left: 0px; right: 0px;">Biology is not static!</h3>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"><strong>Interactive</strong> visualization is <strong>priceless</strong>!</p>
+                        <aside class="notes">
+                            Easy as it is, a video does not tell us the whole story! Only interactive access to the dynamics allow us to satisfy our thirst for knowledge, to explore the dynamics by ourself and to follow our own ideas, interest and focus or to just change the view how you look at it.
+                            Aus allen winkeln so angucken wie ich will.
+                            Und so sollte der Standard eigentlich sein, wie es geteilt wird!
+                            Dann kam Peter 6 Alex auf mich zu und mich gefragt, ob ich das nicht implementieren will. Sure! Dann musste ich mich damit auseinander setzen,w as die hürden waren---Aber was sind denn die Probleme, was waren die hürden 
+
+
+
+                        </aside>
+                    </section>
+                    <section data-state="slide-billion">
+                        <h3>Why visual sharing is difficult...</h3>
+                        <br>
+                        <ul>
+                            <li class="fragment">file size & formats</li>
+                            <li class="fragment">specialized software & setups</li>
+                            <li class="fragment">processed/raw trajectories</li>
+                            <li>exchangablility?</li>
+                            <p class="fragment">&rarr; expert knowledge</p>
+                        </ul>
+                        <p class="fragment">&rArr; limits audience</p>
+                        <br>
+                        <div class="fragment">
+                            <p><strong>Solution: MDsrv</strong><br>visualize & share MDs over the web</p>
+                            <br>
+                            <p style="position: absolute; bottom: 0px; right: 0px; left: 0px;"><font size="2" ><a href="http://dx.doi.org/10.1038/nmeth.4497">Tiemann, et al. (2017). MDsrv: viewing and sharing molecular dynamics simulations on the web. Nat Methods., 14 (12), 1123-1124.</a> </font></p>
+                        </div>
+                        <aside class="notes">
+
+I found that solutions of most of the problems are already available.
+
+Fir instance - the best and easiest way to share is the web
+
+                            Unfortunately, it is not that easy.
+                            As MD belongs to the data-intensive sciences, sharing is hindered by large file sizes and different file formats.
+                            Additionally, visualizing MD trajectories demand specialized, standalone software, setups and processed trajectories. So in the end, expert knowledge.
+                            This heavily limits the audience to which MD is available.
+                            Here I present you our solution the MDserver, which is the first tool to visualize and share MDs over the web by utilizing/applying WebGL and HTML5.
+                            And that's how it all began. / our success story began.
                         </aside>
                     </section>
                 </section>
+<!-- MDsrv -->
                 <section>
-                    <section data-state="slide-title">
-                        <h3 style="position: absolute; top: 0px">Why focus on visualization?</h3>
-                        <p style="position: absolute; bottom:-650px">One Look is Worth A Thousand Words!</p>
+                    <section>
+                        <h3>NGL & web developments</h3>
+                        <p>Web visualization is awesome!</p>
+                        <p>HTML5 & WebGL supersede plug-ins (Java Applets/Flash)</p>
+                        <table >
+                                <th>
+                                    <div style="width: 600px;"><img class="plain" src="img/NGL.png" /></div>
+                                </th>
+                                <th>
+                                    <p align="center">Figures</p>
+                                    <p align="center">&#8659;</p>
+                                    <div style="width: 600px;"><img class="plain"src="img/Alex.jpg" /></div>
+                                </th>
+                        </table>
+                        <p style="position: absolute; bottom: 0px; right: 0px; left: 0px;"><font size="2" ><a href="http://dx.doi.org/10.1093/nar/gkv402">Rose & Hildebrand (2015). NGL Viewer: a web application for molecular visualization. Nucleic Acids Res., 43(W1), W576-9.</a> </font></p>
                         <aside class="notes">
-                            intuitive understanding
+                            Browser-based visualization has long been used as it simplifies access to results of structure-related calculations from web tools and allows quick depiction of entries in on-line structural databases.
+                            Until recently, web browsers could not display 3D content without additional plug-ins like Java Applets or Flash. With the rise of the web as a platform for applications, more capabilities have been added to the web browsers, including HTML5 and the web browser programming language JavaScript. Together with its access to dedicated graphics hardware through WebGL API (application programming interface) (a standard based on the OpenGL ES 2.0 API) to calculate on the GPU (graphics processor unit) directly, rendering performance and quality has notably improved. By now, WebGL and HTML5 is now standard in every modern web browser. 
+                            This improvements allowed Alex Rose the development of the NGL Viewer in our lab, 
+
+                            ... and he went to the RCSB pdb to install this viewer as standard to the pdb. 3 years later, it's now everywshere! which is now the standard viewer within the RCSB PDB and many other scientific structural biology websites.
+                            By leveraging modern web technologies such as WegGL, the NGL Viewer provides scalable molecular graphics allowing the display of large macromolecular assemblies including ribosomes and virus capsids.
+                            
                         </aside>
                     </section>
-
-                    <section data-state="slide-billion">
-                        <h3>Problems of sharing visualization</h3>
-                        <ul>
-                            <li class="fragment">large file size & different formats</li>
-                            <li class="fragment">specialized software & setups</li>
-                        </ul>
-                        <p class="fragment">&rarr; limits audience</p>
-                        <br>
-                        <p class="fragment">WebGL: standard built directly into web browser without requiring installation of plugins</p>
-                        <p class="fragment"><strong>MDsrv</strong>, HTMoL</p>
-                        <aside class="notes">
-                            MD = data-intensive sciences
-                            hindered by large file size
-                            recent software developments 
-                        </aside>
-                    </section>
-
-
-
                     <section>
                         <h3 style="text-transform: none">MDsrv</h3>
                         <img style="width: 50%;" class="plain" src="img/MDsrv.png" />
@@ -299,6 +362,25 @@
                             <p>If it is ok with you, through this practical example, you may present few limitations you may have encountered and maybe some solutions you found to overcome these limitations (if you find some). The idea is to give a practical case to serve as an introduction for the main discussion part during the session:  "Tools for trajectory file sharing".</p>
                         </aside>
                         <p>see the bigger picture</p>
+                    </section>
+                    <section>
+                        <h3>What's out there?</h3>
+                        <p class="fragment" align="left"><strong>Scientific data sharing resources:</strong></p>
+                        <ul>
+                            <li class="fragment">e.g. OSF, FigShare, Zenodo, Dataverse, Dryad, Mendeley Data, DataHube</li>
+                            <li class="fragment">open, free, easy usable</li>
+                            <li class="fragment">few restrictions, no requirements</li>
+                            <li class="fragment">Problem: no attempt to integrate / harmonize data</li>
+                        </ul>
+                        <p class="fragment">&rarr; more about this later</p>
+                        <p class="fragment" align="left"><strong>Visualization resources:</strong></p>
+                        <ul>
+                            <li class="fragment">VMD streamlining</li>
+                            <li class="fragment"><strong>MDsrv</strong>, HTMoL</li>
+                        </ul>
+                        <aside class="notes">
+                           accepting a wide range of data types in a wide variety of formats (not attempt to integrate or harmonize the deposited dataM few restrictions (or requirements 
+                        </aside>
                     </section>
                     <section>
                         <h3>Problems by current sharing culture</h3>
