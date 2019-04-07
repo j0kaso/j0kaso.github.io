@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Sharing-MDsrv</title>
+
+        <meta name="description" content="">
+        <meta name="author" content="Johanna K S Tiemann">
+
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/white.css" id="theme">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <style>
+        .reveal .slides > section {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        .inactive {
+            color: #999;
+        }
+        .warning {
+            color: #eea236;
+        }
+        .success {
+            color: #4cae4c;
+        }
+        .top {
+            top: 100px !important;
+        }
+        .bottom {
+            top: unset !important;
+            bottom: 100px !important;
+        }
+        .reveal .speaker-notes {
+            width: 50%;
+            left: 25%;
+        }
+
+        .x {
+            position:relative;
+        }
+
+        .x:before, .x:after{
+            content:'';
+            position:absolute;
+            width:100%;
+            height:10px;
+            background-color:tomato;
+            top:140px;
+        }
+
+        .x:before {
+            -webkit-transform:rotate(45deg);
+            -moz-transform:rotate(45deg);
+            transform:rotate(45deg);
+            left:2px;
+        }
+        .x:after {
+            -webkit-transform:rotate(-45deg);
+            -moz-transform:rotate(-45deg);
+            transform:rotate(-45deg);
+            right:2px;
+        }
+    </style>
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <small id="busy" style="display:none; position:absolute; top:0px; right:0px;">Loading...</small>
+
+                <div id="viewport" style="width:960px; height:700px;"></div>
+<!-- INTRO --> 
+
+                <section data-state="slide-loading">
+                    <h2 id="status">Loading...</h2>
+                </section>
+
+                <section data-state="slide-title">
+                    <!--<div>Session II: Tools for Trajectory File Sharing</div>-->
+                    <h2 style="text-transform: none">Viewing and sharing molecular dynamics simulations on the web</h2>
+                    <br>
+                    <p><small>2018-12-11</small></p>
+                    <p><small>Johanna Tiemann<br>AG Hildebrand &minus; University Leipzig</small></p>
+                    <br>
+                    <img class="plain" style="width:20%;" src="img/L-logo.jpg" />
+                    <aside class="notes">
+                        <ul>
+                            <li>thanks for intro - Daniel / organizers</li>
+                            <li>great workshop</li>
+                            <li>honored to introduce the session</li>
+                            <li>tools for trajectory fiel sharing</li>
+                        </ul>
+                            Many thanks for your kind introduction Daniel and many thanks to the organizers for inviting me to this great workshop. I feel very honored to introduce to you the session tools for trajectory file sharing.
+                        </aside>
+                </section>
+                <section  style="z-index:100">
+                    <section data-state="slide-billion">
+                        <h3>SHARING - why should I care?</h3>
+                        <br>
+                        <br>
+                        <figure role="group">
+                            <img class="plain" style="width:50%" src="img/collaboration.jpg" />
+                            <figcaption><font size="2">www.wikicsr.it</font></figcaption>
+                        </figure>
+                        <aside class="notes">
+                            <ul>
+                                <li>obviously, no need to motivate / explain</li>
+                                <li>achieve knowledge just by ourself</li>
+                                <li>scientists have to & want to </li>
+                                <li>exchange & discuss observations & interpretations</li>
+                                <li>by sharing their knowledge</li>
+                                <li>reuse &rarr; further knowledge</li>
+                                <li>gives credit</li>
+                                <li>sharing of knowledge & research results in MD community</li>
+                            </ul>
+                            Obviously, I do not have to motivate or explain to you why sharing is important and necessary, because you already care as your came here to this meeting. Naturally, we can not achieve knowledge just by ourself, scientists have to and want to exchange and discuss their observations and interpretations. By sharing their knowledge, it gets reused to gain further knowledge and thereby gives credit to the scientists themselves. So how is this sharing of knowledge and research results done within in the MD community?
+                        </aside>
+                    </section>
+
+                    <section data-state="slide-billion">
+                        <h3>What's the standard?</h3>
+                        <table >
+                                <th class="fragment" >
+                                    <p align="center">Text</p>
+                                    <p align="center">&#8659;</p>
+                                    <div style="width: 300px;"><img class="plain" src="img/pubmed2.png" /></div>
+                                </th>
+                                <th class="fragment" >
+                                    <p align="center">Figures</p>
+                                    <p align="center">&#8659;</p>
+                                    <div style="width: 300px;"><img class="plain"src="img/ncomms14505-f10.jpg" /></div>
+                                </th>
+                                <th class="fragment" >
+                                    <p align="center">Videos</p>
+                                    <p align="center">&#8659;</p>
+                                    <div align="center" style="width: 300px; height: 300px"><video data-autoplay loop="2" src="./data/ncomms14505-s3.mp4"></video></div>
+                                </th>
+                        </table>
+                        <aside class="notes">
+                            <ul>
+                                <li>started PhD (3y ago)</li>
+                                <li>standard sharing:</li>
+                                <li>depending where studies presented</li>
+                                <li>trajectoy output converted into text, figures, best videos</li>
+                                <li>eager to understand biological processes & run sims on them</li>
+                                <li>looked up studies, asked what actually happending</li>
+                                <li>figures = static</li>
+                                <li>video = certain in-transparten persepctive</li>
+                                <li>doesn't tell the whole story of complex dynamics</li>
+                                <li>something out more interactive?</li>
+                                <li>having in mind something like this:</li>
+                                <li>change perspective in instance</li>
+                            </ul>
+                            When I started my PhD, now almost 3 years ago, the standard of sharing looked like this: Depending on where MD studies were presented, trajectory output was converted into text, figures and at the best videos. Eager to understand the biological processes, in my case G-Protein Coupled Receptors and to run simulations on them by myself, I looked up those studies and asked myself what actually is happening there, as figures are just static and videos only show a certain in-transparent perspective. This doesn't tell us the whole story of these complex dynamics! 
+                            So I went to my supervisor and asked him, if there is something out which is actually more interactive, having in mind something like this, where I can easily change the perspective in an instance and being able to zoom & focus on regions, I'm interested in.
+                        </aside>
+                    </section>
+                    <section data-state="slide-title" data-transition="none">
+                        <h3 style="position: absolute; top: 0px; left: 0px; right: 0px;">Unfortunately not this:</h3>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>something out more interactive?</li>
+                                <li>having in mind something like this:</li>
+                                <li>change perspective in instance</li>
+                                <li>zoom & focus on regions, I'm interested in</li>
+                                <li>unfortunately not the case</li>
+                                <li>Peter: put heads together with colleague Alex</li>
+                                <li>give it a try</li>
+                                <li>started looking into: some problems to overcome</li>
+                            </ul>
+                            So I went to my supervisor and asked him, if there is something out which is actually more interactive, having in mind something like this, where I can easily change the perspective in an instance and being able to zoom & focus on regions, I'm interested in. Unfortunately, that was not the case, so Peter said, I should put my head together with my colleague Alex and give it a try! So we started to look into it & pretty soon, we figured out that there were some problem we had to overcome first:
+                        </aside>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3>Obstacles to overcome for visual sharing:</h3>
+                        <br>
+                        <ul>
+                            <li class="fragment">large size<font style="opacity: 0">&rArr; <strong>NGL viewer</strong></font></li>
+                            <li class="fragment">various formats<font style="opacity: 0">&rArr; <strong>MDAnalysis & MDTraj</strong></font></li>
+                            <li class="fragment">raw trajectories<font style="opacity: 0">&rArr; <strong>NGL viewer</strong></font></li>
+                            <li class="fragment">expert software<font style="opacity: 0">&rArr; <strong>NGL viewer</strong></font></li>
+                            <li class="fragment">sharable?</li>
+                        </ul>
+                        <p><font style="opacity: 0"><strong>&rArr; MDsrv</strong></font></p>
+                        <br>
+                        <p style="opacity: 0; position: absolute; bottom: 0px; right: 0px; left: 0px;"><font size="2" ><a href="http://dx.doi.org/10.1093/nar/gkv402">Rose & Hildebrand (2015). NGL Viewer: a web application for molecular visualization. Nucleic Acids Res., 43(W1), W576-9.</a> </font></p>
+                        <p style="opacity: 0; position: absolute; bottom: -20px; right: 0px; left: 0px;"><font size="2" ><a href="http://dx.doi.org/10.1002/jcc.21787">Michaud-Agrawal, et al. (2011). MDAnalysis: a toolkit for the analysis of molecular dynamics simulations. J Comput Chem., 32 (10), 2319-27.</a> </font></p>
+                        <p style="opacity: 0; position: absolute; bottom: -40px; right: 0px; left: 0px;"><font size="2" ><a href="http://dx.doi.org/10.1016/j.bpj.2015.08.015">McGibbon, et al. (2015). MDTraj: A Modern Open Library for the Analysis of Molecular Dynamics Trajectories. Biophys J., 109 (8), 1528-32.</a> </font></p>
+                        <p style="opacity: 0; position: absolute; bottom: -60px; right: 0px; left: 0px;"><font size="2" ><a href="http://dx.doi.org/10.1038/nmeth.4497">Tiemann, et al. (2017). MDsrv: viewing and sharing molecular dynamics simulations on the web. Nat Methods., 14 (12), 1123-1124.</a> </font></p>
+                        <aside class="notes">
+                            <ul>
+                                <li>data-intensive science</li>
+                                <li>sharing hindered</li>
+                                <li>large file size</li>
+                                <li>different file formats</li>
+                                <li>unprocessed trajectories</li>
+                                <li>visualizing MD trajectories demand</li>
+                                <li>specialized, standalone software, processed traj</li>
+                                <li>expert knowledge</li>
+                                <li>heavily limits audience</li>
+                                <li>besides technical aspects</li>
+                                <li>also degree to which MD shared visually</li>
+                                <li>luckily: solutions for most p already available</li>
+                                <li>for instance: best & easiest way to share = via web</li>
+                            </ul>
+                            As MD belongs to the data-intensive sciences, sharing is hindered by large file sizes and different file formats. Often, trajectories are unprocessed. Additionally, visualizing MD trajectories demand specialized, standalone software, setups and processed trajectories. So in the end, expert knowledge. This heavily limits the audience to which MD is available and besides the technical aspects also the degree to which MDs can be shared visually.
+
+                            Luckily, I found that solutions for most of the problems are already available. For instance - the best and easiest way to share is via the web.
+                        </aside>
+                    </section>
+                </section>
+<!-- MDsrv -->
+                <section>
+                    <section data-state="slide-billion">
+                        <h3 style="position: absolute; top: 0px; right: 0px; left: 0px;">Web developments</h3>
+                        <table >
+                                <th class="fragment" >
+                                    <p/>
+                                    <div  style="width: 300px;"><img class="plain" src="img/plugin.png" /></div>
+                                    <div class="fragment">
+                                        <p align="center">&#8659;</p>
+                                        <div align="center" style="width: 300px;"><img class="plain" src="img/web.png" /></div>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div align="center" style="width: 150px; align-content: middle"><p></p></div>
+                                </th>
+                                <th>
+                                    <div style="width: 450px; align-content: middle"></div>
+                                </th>
+                        </table>
+                        <div class="fragment" >
+                            <p style="position: absolute; bottom: 295px; right: 120px; left: -120px;"><strong>&rArr;</strong></p>
+                            <div  style="position: absolute; right: 0px; top: 90px; width: 150px"><img class="plain" src="img/alex.jpg" /><p><small>Alex Rose</small></p></div>
+                            <div  style="position: absolute; right: -400px; left: 400px; top: 90px; bottom: -50px; width: 400px"><img class="plain" src="img/ngl.png" /></div>
+                            <p style="position: absolute; bottom: -50px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1093/nar/gkv402"><strong>NGL Viewer: </strong> Rose & Hildebrand (2015). Nucleic Acids Res., 43(W1), W576-9.</a> </font></p>
+                        </div>
+                        <aside class="notes">
+                            <ul>
+                                <li>web browsers not display 3D content without</li>
+                                <li>additional plug-ins: Java Applets / Flash</li>
+                                <li>rise of web as platform for applications</li>
+                                <li>more capabilities added to wb, incl HTML5 & programming language JS</li>
+                                <li>access to graphic hardware through WebGL API</li>
+                                <li>calculate directly on GPU</li>
+                                <li>rendering performance & quality notably improved</li>
+                                <li>WebGL & HTML5 = standard in modern wb</li>
+                                <li>improvements allowed Alex development of NGL in lab</li>
+                            </ul>
+                            Until recently, web browsers could not display 3D content without additional plug-ins like Java Applets or Flash. With the rise of the web as a platform for applications, more capabilities have been added to the web browsers, including HTML5 and the web browser programming language JavaScript. Together with its access to dedicated graphics hardware through WebGL API to calculate on the GPU directly, rendering performance and quality has notably improved. By now, WebGL and HTML5 is standard in every modern web browser.
+                            This improvements allowed my former colleague Alex Rose the development of the NGL Viewer in our lab. 
+                        </aside>
+                    </section>
+                    <section data-state="slide-zika" data-transition="none">
+                        <h3 id="status" style="position: absolute; top: 0px; right: 0px; left: 0px; text-transform: none">NGL viewer</h3>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>with viewer: visualize huge structures (virus capsids)</li>
+                                <li>surface or all-atom (1/2 million) representation</li>
+                            </ul>
+                            With the viewer, it is now possible to visualize huge structures like virus capsids in surface or all-atom representations.            
+                        </aside>
+                    </section>
+                    <section data-state="slide-zika2" data-transition="none">
+                        <h3 id="status" style="position: absolute; top: 0px; right: 0px; left: 0px; text-transform: none">NGL viewer</h3>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>Alex &rarr; RCSB pdb install NGL as standard viewer</li>
+                                <li>3y later: everywhere</li>
+                                <li>example shows: utilizing NGL, possible to visualize millions of atoms</li>
+                                <li>= large file sizes / huge am of data as gener. by MD in principle no problem </li>
+                                <li>esp. only transfer info needed to vis user input</li>
+                                <li>at that moment: not efficiently show MDs</li>
+                            </ul>
+                            Alex then went to the RCSB pdb to install NGL as standard viewer into the website. 3 years later, you can find the NGL viewer everywhere!
+                            This example show us that by utilizing the NGL viewer, it is easily possible to visualize several million atoms, so large file sizes and huge amount of data as generated by MD are in principle no problem, especially, if you only transfer the information needed to visualize the input by the user. Still, at this moment, NGL could not efficiently show MDs.
+                        </aside>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3>Obstacles to overcome for visual sharing:</h3>
+                        <br>
+                        <ul>
+                            <li><font style="opacity: 0.5">large size </font>&rArr; <strong>NGL viewer</strong></li>
+                            <li><font style="opacity: 1">various formats </font><font style="opacity: 0">&rArr; <strong>MDAnalysis & MDTraj </strong></font></li>
+                            <li><font style="opacity: 0.2">raw  trajectories </font><font style="opacity: 0">&rArr; <strong>NGL viewer </strong></font></li>
+                            <li><font style="opacity: 0.2">expert software </font><font style="opacity: 0">&rArr; <strong>NGL viewer </strong></font></li>
+                            <li><font style="opacity: 0.2">sharable? </font></li>
+                        </ul>
+                        <p><font style="opacity: 0"><strong>&rArr; MDsrv</strong></font></p>
+                        <br>
+                        <p style="opacity: 1; position: absolute; bottom: -5px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1093/nar/gkv402"><strong>NGL Viewer: </strong> Rose & Hildebrand (2015). Nucleic Acids Res., 43(W1), W576-9.</a> </font></p>
+                        <p style="opacity: 0.2; position: absolute; bottom: -40px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1002/jcc.21787"><strong>MDAnalysis: </strong> Michaud-Agrawal, et al. (2011). J Comput Chem., 32 (10), 2319-27.</a> </font></p>
+                        <p style="opacity: 0.2; position: absolute; bottom: -75px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1016/j.bpj.2015.08.015"><strong>MDTraj: </strong> McGibbon, et al. (2015). Biophys J., 109 (8), 1528-32.</a> </font></p>
+                        <p style="opacity: 0.2; position: absolute; bottom: -110px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1038/nmeth.4497"><strong>MDsrv: </strong> Tiemann, et al. (2017). Nat Methods., 14 (12), 1123-1124.</a> </font></p>
+                        <aside class="notes">
+                            <ul>
+                                <li>large file size covered by NGL</li>
+                                <li>tackle p variety of diff. file formats</li>
+                                <li>utilize avail. tools: MDAnalysis & MDTraj</li>
+                            </ul>
+                            Coming back to the problems, large file sizes are covered by the NGL viewer. To tackle the problem of the variety of different file formats, I could happily utilized available tools, namely MDAnalysis and MDTraj.
+                        </aside>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3>Obstacles to overcome for visual sharing:</h3>
+                        <br>
+                        <ul>
+                            <li><font style="opacity: 0.5">large size </font>&rArr; <strong>NGL viewer</strong></li>
+                            <li><font style="opacity: 0.5">various formats </font>&rArr; <strong>MDAnalysis & MDTraj</strong></li>
+                            <li><font style="opacity: 1">raw trajectories </font><font style="opacity: 0">&rArr; <strong>NGL viewer </strong></font></li>
+                            <li><font style="opacity: 0.2">expert software </font><font style="opacity: 0">&rArr; <strong>NGL viewer </strong></font></li>
+                            <li><font style="opacity: 0.2">sharable? </font></li>
+                        </ul>
+                        <p><font style="opacity: 0"><strong>&rArr; MDsrv</strong></font></p>
+                        <br>
+                        <p style="opacity: 1; position: absolute; bottom: -5px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1093/nar/gkv402"><strong>NGL Viewer: </strong> Rose & Hildebrand (2015). Nucleic Acids Res., 43(W1), W576-9.</a> </font></p>
+                        <p style="opacity: 1; position: absolute; bottom: -40px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1002/jcc.21787"><strong>MDAnalysis: </strong> Michaud-Agrawal, et al. (2011). J Comput Chem., 32 (10), 2319-27.</a> </font></p>
+                        <p style="opacity: 1; position: absolute; bottom: -75px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1016/j.bpj.2015.08.015"><strong>MDTraj: </strong> McGibbon, et al. (2015). Biophys J., 109 (8), 1528-32.</a> </font></p>
+                        <p style="opacity: 0.2; position: absolute; bottom: -110px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1038/nmeth.4497"><strong>MDsrv: </strong> Tiemann, et al. (2017). Nat Methods., 14 (12), 1123-1124.</a> </font></p>
+                        <aside class="notes">
+                            <ul>
+                                <li>utilize avail. tools: MDAnalysis & MDTraj</li>
+                                <li>including their capacities --> possible to support traj</li>
+                                <li>common MD packages incl: Amber, Gromacs, NAMD, Tinker, Desmond, ...</li>
+                                <li>powerful feature = possibility to visualize unprocessed traj</li>
+                                <li>implemented in NGL using selection language & geom features</li>
+                            </ul>
+                            To tackle the problem of the variety of different file formats, I could happily utilized available tools, namely MDAnalysis and MDTraj. Including their capacities, it is possible to support trajectories from all common MD packages including Amber, gromacs, NAMD, Tinker, Desmond, to only name a few of them.
+                            A very powerful feature, namely the possibility to visualize unprocessed trajectories, could also be implemented into NGL via its selection language and geometrical features.
+                        </aside>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3>Obstacles to overcome for visual sharing:</h3>
+                        <br>
+                        <ul>
+                            <li><font style="opacity: 0.5">large size </font>&rArr; <strong>NGL viewer</strong></li>
+                            <li><font style="opacity: 0.5">various formats </font>&rArr; <strong>MDAnalysis & MDTraj</strong></li>
+                            <li><font style="opacity: 0.5">raw  trajectories </font>&rArr; <strong>NGL viewer</strong></li>
+                            <li><font style="opacity: 1">expert software </font><font style="opacity: 0">&rArr; <strong>NGL viewer </strong></font></li>
+                            <li><font style="opacity: 0.2">sharable? </font></li>
+                        </ul>
+                        <p><font style="opacity: 0"><strong>&rArr; MDsrv</strong></font></p>
+                        <br>
+                        <p style="opacity: 1; position: absolute; bottom: -5px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1093/nar/gkv402"><strong>NGL Viewer: </strong> Rose & Hildebrand (2015). Nucleic Acids Res., 43(W1), W576-9.</a> </font></p>
+                        <p style="opacity: 1; position: absolute; bottom: -40px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1002/jcc.21787"><strong>MDAnalysis: </strong> Michaud-Agrawal, et al. (2011). J Comput Chem., 32 (10), 2319-27.</a> </font></p>
+                        <p style="opacity: 1; position: absolute; bottom: -75px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1016/j.bpj.2015.08.015"><strong>MDTraj: </strong> McGibbon, et al. (2015). Biophys J., 109 (8), 1528-32.</a> </font></p>
+                        <p style="opacity: 0.2; position: absolute; bottom: -110px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1038/nmeth.4497"><strong>MDsrv: </strong> Tiemann, et al. (2017). Nat Methods., 14 (12), 1123-1124.</a> </font></p>
+                        <aside class="notes">
+                            <ul>
+                                <li>powerful feature = possibility to visualize unprocessed traj</li>
+                                <li>implemented in NGL using selection language & geom features</li>
+                                <li>huge advantage over standalone software</li>
+                                <li>mostly not able: remove PBD, superpos, center complete traj, w 1 click</li>
+                                <li>embedded into any website + powerful & easy to use GUI</li>
+                                <li>allowing different rep & selections</li>
+                            </ul>
+                            Additionally, NGL can be embedded into any website and comes also with a powerful but easy to use graphical user interface, allowing different representations and selections.
+                        </aside>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3>Obstacles to overcome for visual sharing:</h3>
+                        <br>
+                        <ul>
+                            <li><font style="opacity: 0.5">large size </font>&rArr; <strong>NGL viewer</strong></li>
+                            <li><font style="opacity: 0.5">various formats </font>&rArr; <strong>MDAnalysis & MDTraj</strong></li>
+                            <li><font style="opacity: 0.5">raw trajectories </font>&rArr; <strong>NGL viewer</strong></li>
+                            <li><font style="opacity: 0.5">expert software </font>&rArr; <strong>NGL viewer</strong></li>
+                            <li><font style="opacity: 1">sharable? </font></li>
+                        </ul>
+                        <p><font style="opacity: 0"><strong>&rArr; MDsrv </strong></font></p>
+                        <br>
+                        <p style="opacity: 1; position: absolute; bottom: -5px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1093/nar/gkv402"><strong>NGL Viewer: </strong> Rose & Hildebrand (2015). Nucleic Acids Res., 43(W1), W576-9.</a> </font></p>
+                        <p style="opacity: 1; position: absolute; bottom: -40px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1002/jcc.21787"><strong>MDAnalysis: </strong> Michaud-Agrawal, et al. (2011). J Comput Chem., 32 (10), 2319-27.</a> </font></p>
+                        <p style="opacity: 1; position: absolute; bottom: -75px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1016/j.bpj.2015.08.015"><strong>MDTraj: </strong> McGibbon, et al. (2015). Biophys J., 109 (8), 1528-32.</a> </font></p>
+                        <p style="opacity: 0.2; position: absolute; bottom: -110px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1038/nmeth.4497"><strong>MDsrv: </strong> Tiemann, et al. (2017). Nat Methods., 14 (12), 1123-1124.</a> </font></p>
+                        <aside class="notes">
+                            <ul>
+                                <li>embedded into any website + powerful & easy to use GUI</li>
+                                <li>allowing different rep & selections</li>
+                                <li>what's missing?</li>
+                                <li>combine everything & make it sharable</li>
+                            </ul>
+                            Additionally, NGL can be embedded into any website and comes also with a powerful but easy to use graphical user interface, allowing different representations and selections.
+                            So what is missing? We now just needed to combine everything and make it sharable!
+                        </aside>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3>Obstacles to overcome for visual sharing:</h3>
+                        <br>
+                        <ul>
+                            <li><font style="opacity: 0.5">large size </font>&rArr; <strong>NGL viewer</strong></li>
+                            <li><font style="opacity: 0.5">various formats </font>&rArr; <strong>MDAnalysis & MDTraj</strong></li>
+                            <li><font style="opacity: 0.5">raw trajectories </font>&rArr; <strong>NGL viewer</strong></li>
+                            <li><font style="opacity: 0.5">expert software </font>&rArr; <strong>NGL viewer</strong></li>
+                            <li><font style="opacity: 0.5">sharable? </font></li>
+                        </ul>
+                        <p><strong>&rArr; MDsrv</strong></p>
+                        <br>
+                        <p style="position: absolute; bottom: -5px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1093/nar/gkv402"><strong>NGL Viewer:</strong> Rose & Hildebrand (2015). Nucleic Acids Res., 43(W1), W576-9.</a> </font></p>
+                        <p style="position: absolute; bottom: -40px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1002/jcc.21787"><strong>MDAnalysis: </strong> Michaud-Agrawal, et al. (2011). J Comput Chem., 32 (10), 2319-27.</a> </font></p>
+                        <p style="position: absolute; bottom: -75px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1016/j.bpj.2015.08.015"><strong>MDTraj: </strong> McGibbon, et al. (2015). Biophys J., 109 (8), 1528-32.</a> </font></p>
+                        <p style="position: absolute; bottom: -110px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1038/nmeth.4497"><strong>MDsrv: </strong> Tiemann, et al. (2017). Nat Methods., 14 (12), 1123-1124.</a> </font></p>
+                        <aside class="notes">
+                            <ul>
+                                <li>what's missing?</li>
+                                <li>combine everything & make it sharable</li>
+                                <li>result = MDsrv</li>
+                            </ul>
+                            So what is missing? We now just needed to combine everything and make it sharable! And the result is the MDsrv
+                        </aside>
+                    </section>
+
+                    <section data-state="slide-title">
+                        <h3 style="position: absolute; top: -10px; left: 0px; right: 0px; text-transform: none;">MDsrv</h3>
+                        <p>program for interactive & remote exploration of trajectories by employing a client-server architecture</p>
+                        <p class="fragment" style="position: absolute; bottom:-500px; left: 0px; right: 0px;"><strong>tool to stream trajectories over the web</strong></p>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                        <div class="fragment">
+                           <p style="position: absolute; bottom:-550px; left: 0px; right: 0px;"><font size="4" ><a href="http://dx.doi.org/10.1038/ncomms14505">Guixà-González, et al. (2017). Membrane cholesterol access into a G-protein-coupled receptor. Nat Commun., 8, 14505.</a> </font></p>
+                            <p style="position: absolute; bottom: -300px; top: 300px; left: 250px; right: -350px;"><big><strong>https://goo.gl/aLXK48</strong></big></p>
+                        </div>
+ 
+                        <aside class="notes">
+                            <ul>
+                                <li>MDsrv = program for interactive & remote exploration of traj</li>
+                                <li>by emplying a client-server architecture</li>
+                                <li>short: tool to stream traj over web</li>
+                                <li>browser-based presentation</li>
+                                <li>toy example</li>
+                                <li>sim of A2AR  where Chol entering into ligand binding pocket</li>
+                                <li>run by former colleague Ramon at Janas lab</li>
+                                <li>open the link!</li>
+                                <li>= example of what my collaboration partners, reviewers or colleagues get</li>
+                                <li>go through some options</li>
+                            </ul>
+                            So, the MDsrv is a program for interactive and remote exploration of trajectories by employing a client-server architecture or in short a tool to stream trajectories over the web. And within this Browser-based presentation, you can already see such a toy example, which is by the way a simulation of the A2A receptor where Cholesterol is entering into the ligand binding pocket and was run by my former colleague Ramon Guixa-Gonzales at Jana Selents lab. If you want, you can now open this link to explore an example of what our collaboration partners, reviewers or my colleges get. I will go with you through some options of the MDsrv.
+                            <ul>
+                                <li>prepared session</li>
+                                <li>predefined trajectory options, repres., functions</li>
+                                <li>GUI, easily change settings</li>
+                                <li>trajectory settings like run-step time, interpolation, centering</li>
+                                <li>selection, what you want to visualize</li>
+                                <li>export high-resolution images & download PDB-formatted files</li>
+                                <li>that's what your collaboration partners get - of course hidden & password protected</li>
+                                <li>how you as experts can benefit</li>
+                                <li>after installation: conda / pip</li>
+                                <li>change to project dir, execute mdsrv</li>
+                                <li>load structure & trajectory file</li>
+                                <li>single parts automatically concatenated</li>
+                                <li>raw traj &rarr; remoce PBC, superpose with first frame/structure, center to input</li>
+                                <li>esp. powerful: connected via fusesh to cluster</li>
+                                <li>make available to others like 1 example, install it in your apache server</li>
+                                <li>how helpful for students & non-experts: exemplary wiki</li>
+                                <li>think about traj showing activating mechanisms &rarr; instant intuitive understanding via vis</li>
+                            </ul>
+                            This example is a prepared session, where some trajectory options, representations or functions are already predefined. As you're within the GUI, you can easily change those settings again, like here, where you can change the trajectory settings like run-step time or interpolations. Here, you can change the selection, meaning what you want to visualize. You can also make high-resolution figures and download PDB-formatted files. Here you got a glimpse on what our collaboration partners get,of course hidden & password protected.
+                            I want to show you now also, how you as expert can benefit from the mdsrv. After installation via conda or pip, you can just change to your project directory, execute the mdsrv and load a structure & trajectory file. Single parts will be automatically concatenated.
+                            As you can see, this is a raw trajectory but we can easily remove the PBC, superpose it with the first frame or structure and center it according to our input. This is especially powerful if you connect for example via fusesh to your cluster.
+                            To make this available to others like the first example, you have to install it in your apache server.
+                            How helpful this is also for students and non-experts can be seen here in this exemplary wiki. You can easily think about adding a trajectory showing activating mechanisms allowing instant intuitive understanding via visualization.
+                        </aside>
+                    </section>
+
+                    <section data-state="slide-billion">
+                        <h3>Summary</h3>
+                        <ul>
+                            <li>Text, Figures & Videos &rarr; not enough</li>
+                            <li>Web developments &rarr; NGL = powerful visualization</li>
+                            <li>various formats handled by MDAnalysis & MDTraj</li>
+                            <li>MDsrv: now sharing over the web possible!</li>
+                        </ul>
+                        <aside class="notes">
+                            <ul>
+                                <li>summarizing</li>
+                                <li>Text, fig, vid not enough</li>
+                                <li>thanks web dev &rarr; NGL + MDAnalysis & MDTraj</li>
+                                <li>&rArr; visual sharing of MDs now possible over web</li>
+                            </ul>
+                            Summarizing, Texts, figures & videos are just not enough. Thanks to web developments, allowing the development of the NGL viewer and by powerful tools as MDAnalysis & MDTraj, visual sharing of MDs is now possible over the web!
+                        </aside>
+                    </section>
+
+
+                    <section data-state="slide-billion">
+                        <h3>Next steps @Hildebrand lab:</h3>
+                        <ul>
+                            <li>On-line Tutorials & Workshops</li>
+                            <li>Outreach towards Journals & Funding agencies</li>
+                            <li>MDsrv: continuous development</li>
+                            <li>NGL improvements through Alex Rose</li>
+                            <li>Support of platforms such as GPCRmd</li>
+                        </ul>
+                        <aside class="notes">
+                            <ul>
+                                <li>what's next?</li>
+                                <li>online tutorial & workshop for students, academics & non-experts</li>
+                                <li>reach out towards journals & funding agencies &rarr; make them aware MDsrv / HTMol</li>
+                                <li>further developments & close collaboration</li>
+                                <li>support platforms like GPCRmd</li>
+                            </ul>
+                            So what happens next? We're preparing online tutorial & workshops for students, academics and non-experts. Additionally, we want to reach out towards Journals & Funding agencies to make them further aware that tools like the MDsrv or HTMoL are available. Of course, we also further develop the MDsrv and are still in close collaboration with Alex Rose, who is further improving the NGL viewer. Also we're very happy to support such platforms as the GPCRmd, of which you will shortly hear more!
+                        </aside>
+                    </section>
+                    <section>
+                        <p>
+                            &ldquo;All knowledge is connected to all other <br>knowledge. The fun is in making <br>the connections.&rdquo;
+                            <br><small>Arthur C. Aufderheide (1922 - 2013, paleopathologist)</small>
+                        </p>
+                        <br>
+                        <h3>Thank you!</h3>
+                        <br>
+                        <small><p>Peter Hildebrand (University Leipzig & Charité Berlin)</p>
+                        <p>Alex Rose (UC San Diego)</p>
+                        <p>Ramon Guixà-Gonzáles (Charité Berlin & Universitat Autònoma de Barcelona)</p></small>
+                        <img style="z-index:-1; opacity: 0.3; position: absolute; left: 25px; bottom: 0px; right: -25px; top: 0px;" class="plain" src="img/group.jpg" />
+                        <aside class="notes">
+                            <ul>
+                                <li>special thanks supervisor PH</li>
+                                <li>& Alex, from whom I learned so much</li>
+                                <li>Ramon for great help</li>
+                                <li>you for listening</li>
+                            </ul>
+                            I want to especially thank my supervisor Peter Hildebrand and Alex from whom I could just learn so much and also Ramon for his great help with the MDsrv. And of course you for listening.
+                        </aside>
+                    </section>
+                    <section data-state="slide-billion">
+                        <h3>Goal reached?</h3>
+                        <br>
+                        <p>transparency, reuse, reliability for MDs</p>
+                        <br>
+                        <p>&rarr; GPCRmd project</p>
+                        <aside class="notes">
+                            Before I finish - my final question: can the Goal of transparency, reuse and reliability for MDs already be reached with this tool? It's cool but it is still just a visualization. Therefore I very excited about the next talk, where many features like analysis, visualization, will be tackled within a specific database.
+                        </aside>
+                    </section>
+
+                </section>
+<!-- #################################################################################### -->
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+        <script src="js/ngl.js"></script>
+        <script>
+
+var stage;
+document.addEventListener( "DOMContentLoaded", function(){
+    Reveal.initialize({
+        controls: true,
+        showNotes: false,
+        width: 960,
+        height: 700,
+        slideNumber: true,
+        // width: 1280,
+        // height: 933,
+        dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true },
+                    { src: 'plugin/notes/notes.js', async: true },
+                 ]
+    });
+
+
+
+    stage = new NGL.Stage( "viewport", {
+        backgroundColor: "white",
+        sampleLevel: -1
+    } );
+    function handleResize(){
+        stage.handleResize();
+    }
+    window.addEventListener( "resize", handleResize, false );
+
+    stage.tasks.signals.countChanged.add( function( delta, count ){
+        document.getElementById( "busy" ).style.display = count > 0 ? "block" : "none";
+        document.getElementById( "status" ).innerHTML = count > 0 ? "Loading..." : "Ready!";
+    } );
+
+
+    var _A2A_C;
+    var trajComp;
+    var player;
+    stage.loadFile( "./data/entrance_wrapped.gro", {asTrajectory: true} ).then( function( comp ){
+        _A2A_C = comp;
+        comp.addRepresentation( "tube", { sele: "", opacity: 1, side: "front" } );
+        comp.addRepresentation( "hyperball", { visible: true, sele: "CHL1 and 59 and not hydrogen", colorValue: "#ff3900", colorScheme: "element", opacity: 0.9 } );
+        stage.setOrientation([[-0.08918625838576302,1.9883218034604453,4.486656641720855],[126.77370242780779,1.4149585652999876,22.87269897008708],[-0.14316526306884436,-0.09882771206771168,0.9847521468765403]])
+        trajComp = comp.addTrajectory();
+        player = new NGL.TrajectoryPlayer( trajComp.trajectory );
+        player.play();
+
+    } );
+
+    var _5IRE;
+    stage.loadFile( "./data/5IRE.mmtf.gz" ).then( function( o ){
+        _5IRE = o;
+        o.addRepresentation( "licorice", {
+            colorScheme: "chainindex",
+            colorScale: "RdYlBu",
+            assembly: "BU1",
+            useWorker: true,
+            visible: true,
+        } );
+        _5IREsurface = o.addRepresentation( "surface", {
+            scaleFactor: 0.2,
+            surfaceType: "sas",
+            probeRadius: 1.5,
+            colorScheme: "chainindex",
+            colorScale: "RdYlBu",
+            assembly: "BU1",
+            useWorker: true,
+            visible: true,
+            side: "front"
+        } );
+        var bb = o.structure.biomolDict[ "BU1" ].getBoundingBox( o.structure );
+        stage.viewer.center( bb.center() );
+        stage.viewer.zoom( bb.size().length() / 1.4, true );
+    } );
+
+    function hideAll(){
+        stage.eachComponent( function( comp ){
+            comp.setVisibility( false );
+        } );
+    }
+
+    Reveal.addEventListener( "slide-title", function(){
+        hideAll();
+        _A2A_C.setVisibility( true );
+        var cc = _A2A_C.structure;
+        _A2A_C.centerView();
+
+    }, false );
+
+    Reveal.addEventListener( "slide-billion", function(){
+        stage.setSpin( null );
+        stage.setParameters( { clipNear: 0 } );
+        hideAll();
+    }, false );
+
+    var viewer = stage.viewer;
+    var controls = viewer.controls;
+    var camera = viewer.camera;
+
+    Reveal.addEventListener( "slide-zika", function(){
+        hideAll();
+        _5IRE.setVisibility( true );
+        _5IREsurface.setVisibility( true );
+
+        stage.setSpin( [ 0, 1, 0 ], 0.001 );
+        var bb = _5IRE.structure.biomolDict[ "BU1" ].getBoundingBox( _5IRE.structure );
+        stage.viewer.center( bb.center() );
+        stage.viewer.zoom( bb.size().length() / 1.4, true );
+    }, false );
+
+    Reveal.addEventListener( "slide-zika2", function(){
+        hideAll();
+        _5IRE.setVisibility( true );
+        _5IREsurface.setVisibility( false );
+
+        stage.setSpin( [ 0, 1, 0 ], 0.001 );
+    }, false );
+
+} );
+        </script>
+
+    </body>
+</html>
