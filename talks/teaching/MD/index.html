@@ -1,0 +1,872 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Introduction to MDs</title>
+
+        <meta name="description" content="">
+        <meta name="author" content="Johanna K S Tiemann">
+
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/white.css" id="theme">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <style>
+        .reveal .slides > section {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        .inactive {
+            color: #999;
+        }
+        .warning {
+            color: #eea236;
+        }
+        .success {
+            color: #4cae4c;
+        }
+        .top {
+            top: 100px !important;
+        }
+        .bottom {
+            top: unset !important;
+            bottom: 100px !important;
+        }
+        .reveal .speaker-notes {
+            width: 50%;
+            left: 25%;
+        }
+
+        .x {
+            position:relative;
+        }
+
+        .x:before, .x:after{
+            content:'';
+            position:absolute;
+            width:100%;
+            height:10px;
+            background-color:tomato;
+            top:140px;
+        }
+
+        .x:before {
+            -webkit-transform:rotate(45deg);
+            -moz-transform:rotate(45deg);
+            transform:rotate(45deg);
+            left:2px;
+        }
+        .x:after {
+            -webkit-transform:rotate(-45deg);
+            -moz-transform:rotate(-45deg);
+            transform:rotate(-45deg);
+            right:2px;
+        }
+    </style>
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <small id="busy" style="display:none; position:absolute; top:0px; right:0px;">Loading...</small>
+
+                <div id="viewport" style="width:960px; height:700px;"></div>
+<!-- INTRO --> 
+
+                <section data-state="slide-loading">
+                    <h2 id="status">Loading...</h2>
+                </section>
+
+                <section data-state="slide-title">
+                    <div>Group seminar</div>
+                    <h2 style="text-transform: none">Introduction to Molecular Dynamics simulations</h2>
+                    <br>
+                    <p><small>2019-05-03</small></p>
+                    <p><small>Johanna Tiemann<br>AG Hildebrand &minus; University Leipzig</small></p>
+                    <br>
+                    <img class="plain" style="width:20%;" src="img/L-logo.jpg" />
+                </section>
+                <section  style="z-index:100">
+                    <section data-state="slide-billion">
+                        <h3 style="text-transform: none">Why performing simulations?</h3>
+                        <br>
+                        <figure role="group">
+                            <img class="plain" style="width:20%" src="img/sun.jpg" />
+                            <img class="plain" style="width:20%" src="img/flight.jpg" />
+                            <img class="plain" style="width:20%" src="img/High-pressure-cell.jpg" />
+                            <img class="plain" style="width:20%" src="img/cell.jpg" />
+                        <p>Computational biology can offer <br>explanations & predictions</p>
+
+                        <p>&rArr; Replace, accompany, explain & trigger experiments</p>
+                        </figure>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                        <aside class="notes">
+                        <ul>
+                            <li >Dynamic (time-dependent) function/behavior</li>
+                            <li >Fluctuations & conformational changes</li>
+                            <li >Investigate structure, dynamics & thermodynamics</li>
+                            <li >Structural (atomistic) details</li>
+                        </ul>
+                        </aside>
+
+                    </section>
+                    <section data-state="slide-billion">
+                        <h3 style="text-transform: none">Combination of Experiment & Computation</h3>
+                        <figure role="group">
+                            <img class="plain" style="width:50%" src="img/computational-experiment.jpg" />
+                           <figcaption><font size="2">Dror et al. 2010 (DOI: 10.1085/jgp.200910373)</font></figcaption>
+                        </figure>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+                    <section data-state="slide-billion">
+                        <h3 style="text-transform: none">Spatiotemporal resolutions of biophysical techniques</h3>
+                        <figure role="group">
+                            <img class="plain" style="width:75%" src="img/timescales.jpg" />
+                           <figcaption><font size="2">Dror et al. 2010 (doi: 10.1085/jgp.200910373)</font></figcaption>
+                        </figure>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+<!--                        <figure role="group">
+                            <img class="plain" style="width:50%" src="img/computational-experiment.jpg" />
+                           <figcaption><font size="2">Dror et al. 2010 (DOI: 10.1085/jgp.200910373)</font></figcaption>
+                        </figure>
+-->
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">Exploring energy landscapes</h3>
+                        <figure role="group">
+                            <img class="plain" style="width:50%" src="img/energy-landscape-folding.jpg" />
+                           <figcaption><font size="2">Dill & MacCallum 2012 (doi: 10.1038/srep15449)</font></figcaption>
+                        </figure>
+                        <p>Goal: find global minimum of Gibbs free energy</p>
+                        <p>&Delta;G = &Delta;H-T&Delta;S</p>
+                        <p><font size="2">&Delta;H = Enthalpy; T = Absolute temperature; &Delta;S = Entropy</font></p>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">Exploring energy landscapes</h3>
+                        <figure role="group">
+                            <img class="plain" style="width:50%" src="img/srep15449-f1.jpg" />
+                           <figcaption><font size="2">Granata et al. 2015 (doi: 10.1126/science.1219021)</font></figcaption>
+                        </figure>
+                        <p>&rArr; not that simple!</p>
+                        <p>Minimization vs. Molecular Dynamics</p>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                        <aside class="notes">
+                            <p>Minimization: Attempts to find the nearest, low energy conformation</p>
+                            <p>Molecular dynamics: Seeks to explore conformational space; can access multiple low energy conformations</p>
+                        </aside>
+                    </section>
+                    <section data-state="slide-billion">
+                        <h3 style="text-transform: none">What to investigate?</h3>
+                        <figure role="group">
+                            <img class="plain" style="width:75%" src="img/methods.jpg" />
+                           <figcaption><font size="2">Ingólfsson et al. 2016 (doi: 10.1242/jcs.176040)</font><br><font size="5">Computational microscopy & its resolutions</font></figcaption>
+                        </figure>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+
+                </section>
+                <section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">Basics of classical MDs</h3>
+                        <p>
+                            Fundamental equation of classical molecular dynamics: Newton's laws of motion
+                        </p>
+                        <p class="fragment">
+                            <font size="5">The forces is given by the negative gradient of the potential energy.</font>
+                            <br>
+                            F<sub>i</sub> = - &part;U<sub>total</sub> / &part;r<sub>i</sub>
+                        </p>
+                        <p class="fragment">
+                            <font size="5">Knowing the force allows us to accelerate the atoms in the direction of the force</font>
+                            <br>
+                            F<sub>i</sub> = m a<sub>i</sub>
+                        </p>
+                        <p class="fragment">
+                            <font size="5">Potential energy calculated from bonded & non-bonded interactions</font>
+                            <br>
+                            U<sub>total</sub> = U<sub>bonded</sub> + U<sub>non-bonded</sub>
+                        </p>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">Basics of classical MDs</h3>
+                        <figure role="group">
+                            <img class="plain" style="width:75%" src="img/potentials.jpg" />
+                           <figcaption><font size="2">Anwar & Zahn 2017 (doi: 10.1016/j.addr.2017.09.017)</font><br></figcaption>
+                        </figure>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">Force Fields</h3>
+                        <p>&rArr; Energy of atoms by U<sub>total</sub> & parameters</p>
+                        <p class="fragment"><font size="6">costs</font> &dArr; <font size="6">complexity</font></p>
+                        <p class="fragment">Simplified description:</p>
+                        <ul class="fragment"><font size="6">
+                            <li>Fixed point charges &rArr; no electronic polarization</li>
+                            <li>Classical mechanics &rArr; no isotope effects</li>
+                            <li>Fixed bond topology &rArr; no chemistry</li>
+                        </font></ul>
+                        <p class="fragment">&dArr;</p>
+                        <p class="fragment">Specific force fields for specific questions!</p>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+
+                        <aside class="notes">
+                            <p>experimentally-derived: vdW radii, torsions, bond length, angles, charges, atomic masses</p>
+                            <p>Force fields are parameterized to compensate for their simplified description of reality</p>
+                            <ul>
+                                <li>fixed point charges (no electronic polarization) &rArr; increase partial charges to recover polarization effects</li>
+                                <li>Classical mechanics (no isotpe effects) &rArr; tune vdW parameters to revocer the experimental density</li>
+                                <li>Fixed bond topology (no chemistry)</li>
+                            </ul>
+                        <ul>
+                            <li>Environment</li>
+                            <li>Molecule type & behavior</li>
+                            <li>Time-scales</li>
+                        </ul>
+                            <p>CAN & SHOULD be optimized / parameterized (by quantum mechanics)</p>
+                        </aside>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">Basics of classical MDs</h3>
+                        <p>F<sub>i</sub> = m a<sub>i</sub> = - &part;U<sub>total</sub> / &part;r<sub>i</sub></p>
+                        <ul>
+                            <li>Assign masses & initial velocities</li>
+                            <li>Simulation loop</li>
+                            <ul>
+                                <li>update neighbour list</li>
+                                <li>calculate forces F(r)</li>
+                                <li>solve equation of motion</li>
+                                <ul>
+                                    <li>update position and velocity</li>
+                                    <li>include constraints</li>
+                                </ul>
+                                <li>perform p, T control</li>
+                                <li>data output</li>
+                            </ul>
+                            <li>Resulting trajectory analysis</li>
+                        </ul>
+                        <p>&rArr; Calcuating forces is expensive </p>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                        <aside class="notes">
+                        <ol>
+                            <li>Integrate Newton's equations of motion</li>
+                            <li>Stop & evaluate energy</li>
+                            <li>repeat 2 & 3 = timestep/iteration</li>
+                        </ol>
+                        <ul>
+                            <li>&rArr; atomic forces & masses used to solve positions of each atom at a time</li>
+                            <li>trajectory = resulting series of snapshots of structural changes over time</li>
+                            <li>initial velocities = total kinetic energy of the system dictated by a desired simulation temperature (from Maxwell-Boltzmann / Gaussian distribution)</li>
+                            <li>force on atom calculated form change in energy between current position & its position a small distance away</li>
+                            <li>"time step" = 1 fsec = fastest bond vibration</li>
+                            <li>SHAKE-algorithm fixes H-bonds allowing the use of a 2fsec time step</li>
+                        </ul>
+                        </aside>
+                    </section>
+                </section>
+                <section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">Typical classical MD setup</h3>
+                        <ol>
+                            <li>Structure preparation</li>
+                            <li><font style="opacity: 0.3">Membrane insertion</font></li>
+                            <li><font style="opacity: 0.3">Solvation, ionization</font></li>
+                            <li><font style="opacity: 0.3">Apply PBC</font></li>
+                            <li><font style="opacity: 0.3">Minimize</font></li>
+                            <li><font style="opacity: 0.3">Equilibrate</font></li>
+                            <li><font style="opacity: 0.3">Production run</font></li>
+                        </ol>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">1. Structure preparation</h3>
+                        <ul><font size="6">
+                            <li>Structure determination:</li>
+                            <ul>
+                                <li>X-ray, Cryo-EM, NMR</li>
+                                <li>Homology model: MODELLER, SwissModel, Rosetta, SSFE</li>
+                            </ul>
+                        </font></ul>
+                        <figure role="group">
+                            <img class="plain" style="width:40%" src="img/SSFE.jpeg" />
+                            <img class="plain" style="width:40%" src="img/SSFE-fig2.jpeg" />
+                           <figcaption><font size="2">Worth, Kreuchwig, Tiemann, ... Hildebrand, Krause 2017 - Nucleic Acids Research (doi: 10.1093/nar/gkx399)</font><br></figcaption>
+                        </figure>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">1. Structure preparation</h3>
+                        <ul><font size="6">
+                            <li>Homology model/X-ray/Cryo-EM/NMR structure</li>
+                            <li>Back to native: mutations</li>
+                            <li><font style="opacity: 0.3">Missing residues/side-chains: SL2/FragFit (< 20/30 AA)</font></li>
+                            <li><font style="opacity: 0.3">Capping</font></li>
+                            <li><font style="opacity: 0.3">Fill cavities/packing defects: Dowser/MPPD</font></li>
+                            <li><font style="opacity: 0.3">Protonation states, modifications</font></li>
+                        </font></ul>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">1. Structure preparation</h3>
+                        <ul><font size="6">
+                            <li>Homology model/X-ray/Cry-EM/NMR structure</li>
+                            <li>Back to native: mutations</li>
+                            <li>Missing residues/side-chains: SL2/FragFit (< 20/30 AA)</li>
+                        </font></ul>
+                        <figure role="group">
+                            <img class="plain" style="width:45%" src="img/FragFit-figure1.png" />
+                           <figcaption><font size="2">
+                            <p {margin-bottom: 1px;margin-top: 1px}> Ismer, Rose, Tiemann, ... Hildebrand 2016 - Nucleic Acids Research (doi: 10.1093/nar/gkw297) <br>Tiemann, ... Hildebrand 2018 - Nucleic Acids Research (doi: 10.1093/nar/gky424)</p></font><br></figcaption>
+                        </figure>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">1. Structure preparation</h3>
+                        <ul><font size="6">
+                            <li>Homology model/X-ray/Cry-EM/NMR structure</li>
+                            <li>Back to native: mutations</li>
+                            <li>Missing residues/side-chains: SL2/FragFit (< 20/30 AA)</li>
+                            <li>Capping</li>
+                            <li><font style="opacity: 0.3">Fill cavities/packing defects: Dowser/MPPD</font></li>
+                            <li><font style="opacity: 0.3">Protonation states, modifications</font></li>
+                        </font></ul>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">1. Structure preparation</h3>
+                        <ul><font size="6">
+                            <li>Homology model/X-ray/Cry-EM/NMR structure</li>
+                            <li>Back to native: mutations</li>
+                            <li>Missing residues/side-chains: SL2/FragFit (< 20/30 AA)</li>
+                            <li>Capping</li>
+                            <li>Fill cavities/packing defects: Dowser/MPPD</li>
+                            <li><font style="opacity: 0.3">Protonation states</font></li>
+                        </font></ul>
+                        <figure role="group">
+                            <img class="plain" style="width:35%" src="img/MPPD.png" />
+                           <figcaption><font size="2">Rose, ... Hildebrand 2014 - Nucleic Acids Research (doi: 10.1093/nar/gkt1062)</font><br></figcaption>
+                        </figure>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">1. Structure preparation</h3>
+                        <ul><font size="6">
+                            <li>Homology model/X-ray/Cry-EM/NMR structure</li>
+                            <li>Back to native: mutations</li>
+                            <li>Missing residues/side-chains: SL2/FragFit (< 20/30 AA)</li>
+                            <li>Capping</li>
+                            <li>Fill cavities/packing defects: Dowser/MPPD</li>
+                            <li>Protonation states, modifications</li>
+                        </font></ul>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">Typical classical MD setup</h3>
+                        <ol>
+                            <li><font style="opacity: 0.8">Structure preparation</font></li>
+                            <li>Membrane insertion</li>
+                            <ul><font size="6">
+                                <li>Membrane composition: POPC, Cholesterol, ...</li>
+                                <li>Algorithm: CG (e.g memprotmd), Shrinking (g_membed), replacement (CHARMM-GUI)</li>
+                            </font>
+                            </ul>
+                            <li><font style="opacity: 0.3">Solvation, ionization</font></li>
+                            <li><font style="opacity: 0.3">Box-size & PBC</font></li>
+                            <li><font style="opacity: 0.3">Minimize</font></li>
+                            <li><font style="opacity: 0.3">Equilibrate</font></li>
+                            <li><font style="opacity: 0.3">Production run</font></li>
+                        </ol>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">Typical classical MD setup</h3>
+                        <ol>
+                            <li><font style="opacity: 0.8">Structure preparation</font></li>
+                            <li><font style="opacity: 0.8">Membrane insertion</font></li>
+                            <li>Solvation, ionization</li>
+                            <ul><font size="6">
+                                <li>Explicit vs. Implicit / Continuum solvation models)</li>
+                                <li>Neutralize system & structure</li>
+                                <li>&rArr; net charge information of system needed!</font></li>
+                            </font></ul>
+                            <li><font style="opacity: 0.3">Box-size & PBC</font></li>
+                            <li><font style="opacity: 0.3">Minimize</font></li>
+                            <li><font style="opacity: 0.3">Equilibrate</font></li>
+                            <li><font style="opacity: 0.3">Production run</font></li>
+                        </ol>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">Typical classical MD setup</h3>
+                        <ol>
+                            <li><font style="opacity: 0.8">Structure preparation</font></li>
+                            <li><font style="opacity: 0.8">Membrane insertion</font></li>
+                            <li><font style="opacity: 0.8">Solvation, ionization</font></li>
+                            <li>Box-size & PBC</li>
+                        </ol>
+                        <figure role="group">
+                            <img class="plain" style="width:40%" src="img/pbc-mi.png" />
+                            <img class="plain" style="width:40%" src="img/verletneighbourlist.png" />
+                            <img class="plain" style="width:40%" src="img/polyhedra.png" />
+                        </figure>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">Typical classical MD setup</h3>
+                        <ol>
+                            <li><font style="opacity: 0.8">Structure preparation</font></li>
+                            <li><font style="opacity: 0.8">Membrane insertion</font></li>
+                            <li><font style="opacity: 0.8">Solvation, ionization</font></li>
+                            <li><font style="opacity: 0.8">Box-size & PBC</font></li></font>
+                            <li>Minimize</li>
+                            <li><font style="opacity: 0.3">Equilibrate</font></li>
+                            <li><font style="opacity: 0.3">Production run</font></li>
+                        </ol>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">Typical classical MD setup</h3>
+                        <ol>
+                            <li><font style="opacity: 0.8">Structure preparation</font></li>
+                            <li><font style="opacity: 0.8">Membrane insertion</font></li>
+                            <li><font style="opacity: 0.8">Solvation, ionization</font></li>
+                            <li><font style="opacity: 0.8">Box-size & PBC</font></li>
+                            <li><font style="opacity: 0.8">Minimize</font></li>
+                            <li>Equilibrate</li>
+                            <li><font style="opacity: 0.3">Production run</font></li>
+                        </ol>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">Mechanical ensembles</h3>
+                        <p>Statistical mechanical ensembles allow to exchange energy with an external environment</p>
+                        <ul>
+                            <li>Particle number (N) vs Chemical potential (&mu;)</li>
+                            <li>Volume (V) vs Pressure (P)</li>
+                            <li>Energy (E) vs Temperature (T)</li>
+                        </ul>
+                        <figure role="group">
+                            <img class="plain" style="width:40%" src="img/pressure.png" />
+                        </figure>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">Integrators/Algorithms</h3>
+                        <p>&rArr; How to make a step!</p>
+                        <ul>
+                            <li>Gradient Ascent (e.g. Steepest Descent): <br>&rarr; <font size="6">zig-zag</font></li>
+                            <li>Langevin dynamics (stochastic dynamics): <br>&rarr; <font size="6">friction force & random force</font></li>
+                            <li>Metropolis Monte Carlo method (Metropolis-Hastings): <br>&rarr; <font size="6">following a probability by Metropolis criterion</font></li>
+                            <li>...</li>
+                        </ul>
+                        <figure role="group">
+                            <img class="plain" style="width:40%" src="img/steepestdescent.png" />
+                        </figure>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                        <aside class="notes">
+                        <ul>
+                            <li>Gradient Ascent: e.g. Steepest Descent; minimum approached in a zig-zag manner with search direction orthogonal to previous step</li>
+                            <li>Langevin dynamics (stochastic dynamics): Particles experience a friction force as well as a random force from particles "outside" the simulation</li>
+                            <li>Metropolis Monte Carlo method (Metropolis-Hastings): Generate any trial move you like, and accept/reject the move with a probability Given by the Metropolis criterion</li>
+                        </ul>
+                        </aside>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">Typical classical MD setup</h3>
+                        <ol>
+                            <li>Structure preparation</li>
+                            <li>Membrane insertion</li>
+                            <li>Solvation, ionization</li>
+                            <li>Box-size & PBC</li>
+                            <li>Minimize</li>
+                            <li>Equilibrate</li>
+                            <li>Production run</li>
+                        </ol>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+                </section>
+<!-- Analysis & Application -->
+                <section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">Analysis & Application</h3>
+                        <p>So much to explore...</p>
+                        <ul><font size="6">
+                            <li class="fragment">check energy, total pressure, pressure tensor, density, box</li>
+                            <li class="fragment">area per lipid headgroup: verify stable meambran</li>
+                            <li class="fragment">radius of gyration: measure of compactness</li>
+                            <li class="fragment">density: stable &rarr; well-equilibrated system</li>
+                            <li class="fragment">rotation & tilt movements</li>
+                            <li class="fragment">receptor/water/ions/ligand/lipid movements & interactions</li>
+                            <li class="fragment">information about contacts, distances, hydrogen bond and cation &pi;-interaction energies</li>
+                            <li class="fragment">...</li>
+                        </font></ul>
+                        <p class="fragment">...so many different tools...</p>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">Analysis & Application</h3>
+                        <p>Protein Folding: Structure prediction</p>
+                        <ul><font size="6">
+                            <li>RMSD</li>
+                            <li>DSSP</li>
+                            <li>Interactions (Distance, Hbond, ...)</li>
+                        </font></ul>
+                        <figure role="group">
+                            <img class="plain" style="width:40%" src="img/folding.jpg" />
+                           <figcaption><font size="2">Lindorff-Larsen et al. 2011 - Science (doi: 10.1126/science.1208351)</font><br></figcaption>
+                        </figure>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">Analysis & Application</h3>
+                        <p>Protein Folding: Structure prediction</p>
+                        <ul><font size="6">
+                            <li>RMSD</li>
+                            <li>DSSP</li>
+                        </font></ul>
+                        <figure role="group">
+                            <img class="plain" style="width:45%" src="img/RMSD.png" />
+                            <img class="plain" style="width:45%" src="img/SS.png" />
+                        </figure>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+
+
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">Analysis & Application</h3>
+                        <p>Conformational changes</p>
+                        <ul><font size="6">
+                            <li>RMSF</li>
+                        </font></ul>
+                        <figure role="group">
+                            <img class="plain" style="width:45%" src="img/RMSF.png" />
+                        </figure>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">Analysis & Application</h3>
+                        <p>Protein-Ligand binding</p>
+                        <ul><font size="6">
+                            <li>free energies</li>
+                            <li>RMSD</li>
+                            <li>Distances</li>
+                        </font></ul>
+                        <figure role="group">
+                            <img class="plain" style="width:75%" src="img/anie201708764-fig-0001-m.jpg" />
+                           <figcaption><font size="2">Saleh et al. 2018 - Angewandte Chemie International Edition (doi: 10.1002/anie.201708764)</font><br></figcaption>
+                        </figure>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">Analysis & Application</h3>
+                        <p>So much to explore...</p>
+                        <ul style="opacity: 0.3"><font size="6">
+                            <li>check energy, total pressure, pressure tensor, density, box</li>
+                            <li>area per lipid headgroup: verify stable meambran</li>
+                            <li>radius of gyration: measure of compactness</li>
+                            <li>density: stable &rarr; well-equilibrated system</li>
+                            <li>rotation & tilt movements</li>
+                            <li>receptor/water/ions/ligand/lipid movements & interactions</li>
+                            <li>information about contacts, distances, hydrogen bond and cation &pi;-interaction energies</li>
+                            <li>...</li>
+                        </font></ul>
+                        <ul>
+                            <li class="fragment">VISUALIZATION</li>
+                        </ul>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+
+                </section>
+<!-- Visualization -->
+                <section>
+                    <section data-state="slide-billion">
+                        <h3>Standard of visual sharing</h3>
+                        <table >
+                                <th class="fragment" >
+                                    <p align="center">Text</p>
+                                    <p align="center">&#8659;</p>
+                                    <div style="width: 300px;"><img class="plain" src="img/pubmed2.png" /></div>
+                                </th> 
+                                <th class="fragment" >
+                                    <p align="center">Figures</p>
+                                    <p align="center">&#8659;</p>
+                                    <div style="width: 300px;"><img class="plain"src="img/ncomms14505-f10.jpg" /></div>
+                                </th>
+                                <th class="fragment" >
+                                    <p align="center">Videos</p>
+                                    <p align="center">&#8659;</p>
+                                    <div align="center" style="width: 300px; height: 300px"><video data-autoplay loop="2" src="./data/ncomms14505-s3.mp4"></video></div>
+                                </th>
+                        </table>
+
+                    </section>
+<!--                    <section data-state="slide-title" data-transition="none">
+                        <h3 style="position: absolute; top: 0px; left: 0px; right: 0px;">Unfortunately not this:</h3>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+
+                    </section>
+-->
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3>Obstacles to overcome for visual sharing:</h3>
+                        <br>
+                        <ul>
+                            <li class="fragment">large size<font style="opacity: 0">&rArr; <strong>NGL viewer</strong></font></li>
+                            <li class="fragment">various formats<font style="opacity: 0">&rArr; <strong>MDAnalysis & MDTraj</strong></font></li>
+                            <li class="fragment">raw trajectories<font style="opacity: 0">&rArr; <strong>NGL viewer</strong></font></li>
+                            <li class="fragment">expert software<font style="opacity: 0">&rArr; <strong>NGL viewer</strong></font></li>
+                            <li class="fragment">sharable?</li>
+                        </ul>
+                        <p><font style="opacity: 0"><strong>&rArr; MDsrv</strong></font></p>
+                        <br>
+                        <p style="opacity: 0; position: absolute; bottom: 0px; right: 0px; left: 0px;"><font size="2" ><a href="http://dx.doi.org/10.1093/nar/gkv402">Rose & Hildebrand (2015). NGL Viewer: a web application for molecular visualization. Nucleic Acids Res., 43(W1), W576-9.</a> </font></p>
+                        <p style="opacity: 0; position: absolute; bottom: -20px; right: 0px; left: 0px;"><font size="2" ><a href="http://dx.doi.org/10.1002/jcc.21787">Michaud-Agrawal, et al. (2011). MDAnalysis: a toolkit for the analysis of molecular dynamics simulations. J Comput Chem., 32 (10), 2319-27.</a> </font></p>
+                        <p style="opacity: 0; position: absolute; bottom: -40px; right: 0px; left: 0px;"><font size="2" ><a href="http://dx.doi.org/10.1016/j.bpj.2015.08.015">McGibbon, et al. (2015). MDTraj: A Modern Open Library for the Analysis of Molecular Dynamics Trajectories. Biophys J., 109 (8), 1528-32.</a> </font></p>
+                        <p style="opacity: 0; position: absolute; bottom: -60px; right: 0px; left: 0px;"><font size="2" ><a href="http://dx.doi.org/10.1038/nmeth.4497">Tiemann, et al. (2017). MDsrv: viewing and sharing molecular dynamics simulations on the web. Nat Methods., 14 (12), 1123-1124.</a> </font></p>
+
+                    </section>
+                    <section data-state="slide-zika" data-transition="none">
+                        <h3 id="status" style="position: absolute; top: 0px; right: 0px; left: 0px; text-transform: none">Web developments &rarr; NGL viewer</h3>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                        <p style="position: absolute; bottom:-692px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1093/nar/gkv402"><strong>NGL Viewer: </strong> Rose & Hildebrand (2015). Nucleic Acids Res., 43(W1), W576-9.</a> </font></p>
+                    </section>
+                    <section data-state="slide-zika2" data-transition="none">
+                        <h3 id="status" style="position: absolute; top: 0px; right: 0px; left: 0px; text-transform: none">Web development &rarr; NGL viewer</h3>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                        <p style="position: absolute; bottom: -692px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1093/nar/gkv402"><strong>NGL Viewer: </strong> Rose & Hildebrand (2015). Nucleic Acids Res., 43(W1), W576-9.</a> </font></p>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3>Obstacles to overcome for visual sharing:</h3>
+                        <br>
+                        <ul>
+                            <li><font style="opacity: 0.5">large size </font>&rArr; <strong>NGL viewer</strong></li>
+                            <li><font style="opacity: 0.5">various formats </font>&rArr; <strong>MDAnalysis & MDTraj</strong></li>
+                            <li><font style="opacity: 0.5">raw trajectories </font>&rArr; <strong>NGL viewer</strong></li>
+                            <li><font style="opacity: 0.5">expert software </font>&rArr; <strong>NGL viewer</strong></li>
+                            <li><font style="opacity: 0.5">sharable? </font></li>
+                        </ul>
+                        <p><strong>&rArr; MDsrv</strong></p>
+                        <br>
+                        <p style="position: absolute; bottom: -5px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1093/nar/gkv402"><strong>NGL Viewer:</strong> Rose & Hildebrand (2015). Nucleic Acids Res., 43(W1), W576-9.</a> </font></p>
+                        <p style="position: absolute; bottom: -40px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1002/jcc.21787"><strong>MDAnalysis: </strong> Michaud-Agrawal, et al. (2011). J Comput Chem., 32 (10), 2319-27.</a> </font></p>
+                        <p style="position: absolute; bottom: -75px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1016/j.bpj.2015.08.015"><strong>MDTraj: </strong> McGibbon, et al. (2015). Biophys J., 109 (8), 1528-32.</a> </font></p>
+                        <p style="position: absolute; bottom: -110px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1038/nmeth.4497"><strong>MDsrv: </strong> Tiemann, et al. (2017). Nat Methods., 14 (12), 1123-1124.</a> </font></p>
+                    </section>
+
+                    <section data-state="slide-title">
+                        <h3 style="position: absolute; top: -10px; left: 0px; right: 0px; text-transform: none;">MDsrv</h3>
+                        <p>program for interactive & remote exploration of trajectories by employing a client-server architecture</p>
+                        <p style="position: absolute; bottom:-500px; left: 0px; right: 0px;"><strong>tool to stream trajectories over the web</strong></p>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                        <div >
+                           <p style="position: absolute; bottom:-600px; left: 0px; right: 0px;"><font size="4" >
+                            <a href="http://dx.doi.org/10.1038/nmeth.4497">Tiemann, et al. (2017). Nat Methods., 14 (12), 1123-1124.</a>
+                            <br>
+                            <a href="http://dx.doi.org/10.1038/ncomms14505">Guixà-González, et al. (2017). Nat Commun., 8, 14505.</a> </font></p>
+                        </div>
+                    </section>
+                </section>
+                <section>
+                    <section data-state="slide-billion">
+                        <h3 style="text-transform: none">What did you learn...</h3>
+                        <ul><font size="6">
+                            <li>Different methods for different questions</li>
+                            <li>Basics of classical MD</li>
+                            <li>Analysis depends on the question</li>
+                        </font></ul>
+                        <p></p><p></p>
+                        <h3 style="text-transform: none">What's next?</h3>
+                        <ul><font size="6">
+                            <li>Simulation of SH3 domains & Arrestin peptides</li>
+                            <li>Simulation setup of SH3 domain & full-length Arrestin</li>
+                        </font></ul>
+                         <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                    </section>
+
+                    <section data-state="slide-billion">
+                        <p>
+                            &ldquo;All knowledge is connected to all other <br>knowledge. The fun is in making <br>the connections.&rdquo;
+                            <br><small>Arthur C. Aufderheide (1922 - 2013, paleopathologist)</small>
+                        </p>
+                        <br>
+                        <h3>Thank you!</h3>
+                        <br>
+                        <small><p>Peter Hildebrand (University Leipzig & Charité Berlin)</p>
+                        <p>Alex Rose (UC San Diego)</p>
+                        <p>Ramon Guixà-Gonzáles (Charité Berlin & Universitat Autònoma de Barcelona)</p></small>
+                        <img style="z-index:-1; opacity: 0.3; position: absolute; left: 25px; bottom: 0px; right: -25px; top: 0px;" class="plain" src="img/group.jpg" />
+                    </section>
+<!--
+                    <section data-state="slide-billion">
+                        <h3>Quantum mechanical MD - method of choice?</h3>
+                        <p>Why is there an atom limit? due to computational power</p>
+                        <p>Why so computationally demanding? Takes time to solve the electornic Schrödinger equation</p>
+                        <p>Schrödinger equation - linear, partial differential equation that describes how the quantum state of some physical system changes with time - analog to Newton's 2nd law. The "solutions" are functions which describe wave-like motion for a group of particles.</p>
+                    </section>
+                    <section data-state="slide-billion">
+                        <h3>Notes</h3>
+                        <br>
+                        <ul>
+                            <li>example of topology file from a force field (atom,structure, charges, bonds, ...)</li>
+                            <ul>
+                                <li>geometries form real-world experiments (X-ray crystallography, NMR, spectroscopy)</li>
+                                <li>Charges form rigorous quantum-mechanical ab initio methods</li>
+                                <li>Algorithm assigns a type to each atom</li>
+                                <li>nucleic acids, aomino acids, common small molecules (ATP, heme, modified aa) already solved</li>
+                            </ul>
+                            <li>creating novel ff parameters</li>
+                            <li>Langevin Thermostat (mass of particle = viscosity of hypothetical medium, interatomic force, random force, temperature of medium)... further algorithms; barostat</li>
+                            <li>Recommended reading</li>
+                        </ul>
+                    </section>
+-->
+                </section>
+<!-- #################################################################################### -->
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+        <script src="js/ngl.js"></script>
+        <script>
+
+var stage;
+document.addEventListener( "DOMContentLoaded", function(){
+    Reveal.initialize({
+        controls: true,
+        showNotes: false,
+        width: 960,
+        height: 700,
+        slideNumber: true,
+        // width: 1280,
+        // height: 933,
+        dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true },
+                    { src: 'plugin/notes/notes.js', async: true },
+                 ]
+    });
+
+
+
+    stage = new NGL.Stage( "viewport", {
+        backgroundColor: "white",
+        sampleLevel: -1
+    } );
+    function handleResize(){
+        stage.handleResize();
+    }
+    window.addEventListener( "resize", handleResize, false );
+
+    stage.tasks.signals.countChanged.add( function( delta, count ){
+        document.getElementById( "busy" ).style.display = count > 0 ? "block" : "none";
+        document.getElementById( "status" ).innerHTML = count > 0 ? "Loading..." : "Ready!";
+    } );
+
+
+    var _A2A_C;
+    var trajComp;
+    var player;
+    stage.loadFile( "./data/entrance_wrapped.gro", {asTrajectory: true} ).then( function( comp ){
+        _A2A_C = comp;
+        comp.addRepresentation( "tube", { sele: "", opacity: 1, side: "front" } );
+        comp.addRepresentation( "hyperball", { visible: true, sele: "CHL1 and 59 and not hydrogen", colorValue: "#ff3900", colorScheme: "element", opacity: 0.9 } );
+        stage.setOrientation([[-0.08918625838576302,1.9883218034604453,4.486656641720855],[126.77370242780779,1.4149585652999876,22.87269897008708],[-0.14316526306884436,-0.09882771206771168,0.9847521468765403]])
+        trajComp = comp.addTrajectory();
+        player = new NGL.TrajectoryPlayer( trajComp.trajectory );
+        player.play();
+
+    } );
+
+    var _5IRE;
+    stage.loadFile( "./data/5IRE.mmtf.gz" ).then( function( o ){
+        _5IRE = o;
+        o.addRepresentation( "licorice", {
+            colorScheme: "chainindex",
+            colorScale: "RdYlBu",
+            assembly: "BU1",
+            useWorker: true,
+            visible: true,
+        } );
+        _5IREsurface = o.addRepresentation( "surface", {
+            scaleFactor: 0.2,
+            surfaceType: "sas",
+            probeRadius: 1.5,
+            colorScheme: "chainindex",
+            colorScale: "RdYlBu",
+            assembly: "BU1",
+            useWorker: true,
+            visible: true,
+            side: "front"
+        } );
+        var bb = o.structure.biomolDict[ "BU1" ].getBoundingBox( o.structure );
+        stage.viewer.center( bb.center() );
+        stage.viewer.zoom( bb.size().length() / 1.4, true );
+    } );
+
+    function hideAll(){
+        stage.eachComponent( function( comp ){
+            comp.setVisibility( false );
+        } );
+    }
+
+    Reveal.addEventListener( "slide-title", function(){
+        hideAll();
+        _A2A_C.setVisibility( true );
+        var cc = _A2A_C.structure;
+        _A2A_C.centerView();
+
+    }, false );
+
+    Reveal.addEventListener( "slide-billion", function(){
+        stage.setSpin( null );
+        stage.setParameters( { clipNear: 0 } );
+        hideAll();
+    }, false );
+
+    var viewer = stage.viewer;
+    var controls = viewer.controls;
+    var camera = viewer.camera;
+
+    Reveal.addEventListener( "slide-zika", function(){
+        hideAll();
+        _5IRE.setVisibility( true );
+        _5IREsurface.setVisibility( true );
+
+        stage.setSpin( [ 0, 1, 0 ], 0.001 );
+        var bb = _5IRE.structure.biomolDict[ "BU1" ].getBoundingBox( _5IRE.structure );
+        stage.viewer.center( bb.center() );
+        stage.viewer.zoom( bb.size().length() / 1.4, true );
+    }, false );
+
+    Reveal.addEventListener( "slide-zika2", function(){
+        hideAll();
+        _5IRE.setVisibility( true );
+        _5IREsurface.setVisibility( false );
+
+        stage.setSpin( [ 0, 1, 0 ], 0.001 );
+    }, false );
+
+} );
+        </script>
+
+    </body>
+</html>
