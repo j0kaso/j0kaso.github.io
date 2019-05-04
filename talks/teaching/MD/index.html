@@ -164,12 +164,17 @@
                            <figcaption><font size="2">Granata et al. 2015 (doi: 10.1126/science.1219021)</font></figcaption>
                         </figure>
                         <p>&rArr; not that simple!</p>
-                        <p>Minimization vs. Molecular Dynamics</p>
+                        <p>Minimization vs. Molecular Dynamics</p> 
                         <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
                         <aside class="notes">
                             <p>Minimization: Attempts to find the nearest, low energy conformation</p>
                             <p>Molecular dynamics: Seeks to explore conformational space; can access multiple low energy conformations</p>
                         </aside>
+                    </section>
+                    <section data-state="slide-billion" data-transition="none">
+                        <h3 style="text-transform: none">Exploring energy landscapes</h3>
+                        <div align="center" ><video data-autoplay loop="2" src="./data/metadynamics.mp4"></video></div>
+                        <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
                     </section>
                     <section data-state="slide-billion">
                         <h3 style="text-transform: none">What to investigate?</h3>
@@ -384,7 +389,7 @@
                             <li>Membrane insertion</li>
                             <ul><font size="6">
                                 <li>Membrane composition: POPC, Cholesterol, ...</li>
-                                <li>Algorithm: CG (e.g memprotmd), Shrinking (g_membed), replacement (CHARMM-GUI)</li>
+                                <li>Algorithm: CG, Shrinking, replacement</li>
                             </font>
                             </ul>
                             <li><font style="opacity: 0.3">Solvation, ionization</font></li>
@@ -394,6 +399,11 @@
                             <li><font style="opacity: 0.3">Production run</font></li>
                         </ol>
                         <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>Algorithm: CG (e.g memprotmd), Shrinking (g_membed), replacement (CHARMM-GUI)</li>
+                            </ul>
+                        </aside>
                     </section>
                     <section data-state="slide-billion" data-transition="none">
                         <h3 style="text-transform: none">Typical classical MD setup</h3>
@@ -642,12 +652,12 @@
 
                     </section>
                     <section data-state="slide-zika" data-transition="none">
-                        <h3 id="status" style="position: absolute; top: 0px; right: 0px; left: 0px; text-transform: none">Web developments &rarr; NGL viewer</h3>
+                        <h3 id="status" style="position: absolute; bottom:-602px; right: 0px; left: 0px; text-transform: none">Web developments &rarr; NGL viewer</h3>
                         <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
                         <p style="position: absolute; bottom:-692px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1093/nar/gkv402"><strong>NGL Viewer: </strong> Rose & Hildebrand (2015). Nucleic Acids Res., 43(W1), W576-9.</a> </font></p>
                     </section>
                     <section data-state="slide-zika2" data-transition="none">
-                        <h3 id="status" style="position: absolute; top: 0px; right: 0px; left: 0px; text-transform: none">Web development &rarr; NGL viewer</h3>
+                        <h3 id="status" style="position: absolute; bottom:-602px; right: 0px; left: 0px; text-transform: none">Web development &rarr; NGL viewer</h3>
                         <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
                         <p style="position: absolute; bottom: -692px; left: 0px;"><font size="5" ><a href="http://dx.doi.org/10.1093/nar/gkv402"><strong>NGL Viewer: </strong> Rose & Hildebrand (2015). Nucleic Acids Res., 43(W1), W576-9.</a> </font></p>
                     </section>
@@ -671,7 +681,6 @@
 
                     <section data-state="slide-title">
                         <h3 style="position: absolute; top: -10px; left: 0px; right: 0px; text-transform: none;">MDsrv</h3>
-                        <p>program for interactive & remote exploration of trajectories by employing a client-server architecture</p>
                         <p style="position: absolute; bottom:-500px; left: 0px; right: 0px;"><strong>tool to stream trajectories over the web</strong></p>
                         <p style="position: absolute; bottom:-692px; left: 0px; right: 0px;"> </p>
                         <div >
@@ -707,9 +716,10 @@
                         <br>
                         <h3>Thank you!</h3>
                         <br>
-                        <small><p>Peter Hildebrand (University Leipzig & Charité Berlin)</p>
-                        <p>Alex Rose (UC San Diego)</p>
-                        <p>Ramon Guixà-Gonzáles (Charité Berlin & Universitat Autònoma de Barcelona)</p></small>
+                        <small><p style=" opacity: 0">Peter Hildebrand (University Leipzig & Charité Berlin)</p>
+
+                        <p style=" opacity: 0">Alex Rose (UC San Diego)</p>
+                        <p style="opacity: 0">Ramon Guixà-Gonzáles (Charité Berlin & Universitat Autònoma de Barcelona)</p></small>
                         <img style="z-index:-1; opacity: 0.3; position: absolute; left: 25px; bottom: 0px; right: -25px; top: 0px;" class="plain" src="img/group.jpg" />
                     </section>
 <!--
