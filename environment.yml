@@ -13,5 +13,8 @@ dependencies:
     - notebook
     - ipykernel
     - nglview=2.7
-    
-
+    - rdkit::rdkit
+    - pip:
+        - pytraj
+        - ipython_blocking
+        - moviepy
