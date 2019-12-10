@@ -6,6 +6,12 @@ dependencies:
     - mdanalysis
     - mdanalysistests
     - mdtraj
-    - nglview
+    - jupyterlab=1.0.9
+    - nodejs
+    - ipython
+    - ipywidgets=7.5.1
+    - notebook
+    - ipykernel
+    - nglview=2.7
     
 
